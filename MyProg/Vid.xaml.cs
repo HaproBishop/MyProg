@@ -36,8 +36,7 @@ namespace MyProg
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            Class_WorkNotepad.SaveSettings(FontChangeSize_TextBox.Text, StyleSelect.Text);
-            
+            Class_WorkNotepad.SaveSettings(FontChangeSize_TextBox.Text, StyleSelect.Text);            
         }
 
         private void StyleSegoeUI_Selected(object sender, RoutedEventArgs e)

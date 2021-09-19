@@ -72,7 +72,7 @@ namespace MyProg
 
         private void AbProg_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Here must be name of developer? :D");
         }
     }
 }
