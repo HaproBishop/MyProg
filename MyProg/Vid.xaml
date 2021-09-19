@@ -1,0 +1,62 @@
+﻿<Window x:Class="MyProg.Vid"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyProg"
+        mc:Ignorable="d"
+        Title="Vid" Height="350" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid >
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF463434" Offset="0"/>
+                <GradientStop Color="#FFFF5C5C" Offset="1"/>
+                <GradientStop Color="#FFFF7D7D" Offset="0.263"/>
+                <GradientStop Color="#FFFFBDBD" Offset="0.573"/>
+                <GradientStop Color="#FFFF7070" Offset="0.85"/>
+                <GradientStop Color="#FFFF6767" Offset="0.93"/>
+                <GradientStop Color="#FFFF9191" Offset="0.76"/>
+                <GradientStop Color="#FFFF9F9F" Offset="0.693"/>
+                <GradientStop Color="#FF8B5252" Offset="0.12"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <GroupBox Header="Шрифт" FontFamily="Impact" FontSize="35">
+            <GroupBox.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF360000"/>
+                    <GradientStop Color="#FF470000" Offset="1"/>
+                    <GradientStop Color="#FF740000" Offset="0.787"/>
+                    <GradientStop Color="#FF383737" Offset="0.463"/>
+                    <GradientStop Color="#FF700000" Offset="0.21"/>
+                    <GradientStop Color="#FFE00000" Offset="0.413"/>
+                    <GradientStop Color="#FFCB0000" Offset="0.513"/>
+                </LinearGradientBrush>
+            </GroupBox.Foreground>
+            <GroupBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF463434" Offset="0"/>
+                    <GradientStop Color="#FFFF5C5C" Offset="1"/>
+                    <GradientStop Color="#FFFF7D7D" Offset="0.263"/>
+                    <GradientStop Color="#FFFFBDBD" Offset="0.573"/>
+                    <GradientStop Color="#FFFF7070" Offset="0.85"/>
+                    <GradientStop Color="#FFFF6767" Offset="0.93"/>
+                    <GradientStop Color="#FFFF9191" Offset="0.76"/>
+                    <GradientStop Color="#FFFF9F9F" Offset="0.693"/>
+                    <GradientStop Color="#FF8B5252" Offset="0.12"/>
+                </LinearGradientBrush>
+            </GroupBox.BorderBrush>
+            <Grid>
+                <Label Width="90" Height="40" Content="Размер:" Foreground="Black" FontWeight="Bold" FontFamily="Impact" FontSize="22" HorizontalAlignment="Left" Margin="10,10,0,221" />
+                <TextBox x:Name="FontChangeSize_TextBox" Text="12" Width="38" Height="40" VerticalAlignment="Top" HorizontalAlignment="Right" FontFamily="Impact" FontSize="22" Background="#4C000000" Margin="0,10,144,0" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Content="Стиль:" Width="90" Height="40" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,55,182,0" Foreground="Black" FontWeight="Bold" FontFamily="Impact" FontSize="22"/>
+                <ComboBox x:Name="StyleSelect" Width="172" Height="40" VerticalAlignment="Top" HorizontalAlignment="Right" FontFamily="Impact" FontSize="22" Background="#4C000000" Margin="0,55,10,0" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                    <ComboBoxItem x:Name="StyleArial_ComboBox" Content="Arial" FontSize="12" FontFamily="Arial" Selected="StyleArial_ComboBox_Selected"/>
+                    <ComboBoxItem x:Name="StyleImpact_ComboBox" Content="Impact" FontSize="12" Selected="LImpact_Selected"/>
+                    <ComboBoxItem x:Name="StyleSegoeUI" Content="Segoe UI" FontSize="12" FontFamily="Segoe UI" IsSelected="True" Selected="StyleSegoeUI_Selected"/>
+                    <ComboBoxItem x:Name="TimesNewRoman" Content="Times New Roman" FontSize="12" FontFamily="Times New Roman" Selected="TimesNewRoman_Selected"/>
+                </ComboBox>
+                <Button x:Name="Accept" Content="Подтвердить" HorizontalAlignment="Left" Margin="10,214,0,0" VerticalAlignment="Top" Width="262" Click="Accept_Click"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
