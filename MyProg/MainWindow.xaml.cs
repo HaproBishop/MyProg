@@ -58,19 +58,19 @@ namespace MyProg
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
-        private void Vid_Click(object sender, RoutedEventArgs e)
+        private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            Vid windowvid = new Vid();
-            if (windowvid.ShowDialog() == true) 
+            SettingsWindow settingswindow = new SettingsWindow
             {
-                OwnText.Text = "AHAHA";
-            }
-        }
+                Owner = this
+            };
+            settingswindow.ShowDialog();
+       }
 
-        private void AbProg_Click(object sender, RoutedEventArgs e)
+        private void AboutProgram_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Here must be name of developer? :D");
         }

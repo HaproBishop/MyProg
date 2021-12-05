@@ -25,7 +25,7 @@ namespace WorkNotepad
         }
         public static void SaveSettings(string size, string style)
         {
-            StreamWriter savefile = new StreamWriter(@"C:\AppData\Local\NotepadHB\Settings.cfg");
+            StreamWriter savefile = new StreamWriter("config.ini");
             savefile.WriteLine(size);
             savefile.WriteLine(style);
             savefile.Close();
