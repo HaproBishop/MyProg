@@ -32,6 +32,10 @@
             <MenuItem x:Name="AboutProgram" Header="О программе" Click="AboutProgram_Click"/>
         </Menu>
         <TextBox x:Name="OwnText" Margin="0,0,0,1" TextWrapping="Wrap" Background="#BFFFFFFF" AcceptsReturn="True" AcceptsTab="True" MinWidth="100" MinHeight="100" Grid.Row="1"/>
-        <StatusBar VerticalAlignment="Bottom" Grid.Row="2" Height="25"/>
+        <StatusBar VerticalAlignment="Bottom" Grid.Row="2" Height="25">
+            <TextBlock x:Name="Time"/>
+            <Separator Width="3"/>
+            <TextBlock x:Name="Date"/>
+        </StatusBar>
     </Grid>
 </Window>

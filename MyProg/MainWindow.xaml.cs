@@ -72,19 +72,22 @@ namespace MyProg
 
         private void AboutProgram_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Here must be name of developer? :D");
+            MessageBox.Show("Name of the developer must be here? :D");
         }
 
         private void OwnWindow_Loaded(object sender, RoutedEventArgs e)
         {
             DispatcherTimer time = new DispatcherTimer();
             time.Tick += Time_Tick;
-            time.Interval = new TimeSpan();
+            time.Interval = new TimeSpan(0,0,1);
+            time.IsEnabled = true;
         }
 
         private void Time_Tick(object sender, EventArgs e)
         {
-            
+            DateTime data = DateTime.Now;
+            Time.Text = data.ToString("HH:mm");
+            Date.Text = data.ToString("dd.MM.yyyy");
         }
     }
 }

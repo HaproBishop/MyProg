@@ -25,7 +25,7 @@ namespace MyProg
         {
             InitializeComponent();
         }
-        WorkNotepad _worknotepad;
+        WorkNotepad _worknotepad = new WorkNotepad();
         private void LImpact_Selected(object sender, RoutedEventArgs e)
         {
             

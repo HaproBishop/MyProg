@@ -13,6 +13,10 @@ namespace WorkNotepadLibrary
         public int Size { get => _size; set => _size = ProveValue(value) ? value : throw new Exception("Неудовлетворительное число для данного свойства"); }
         public string Style { get; set; }
         public string ImagePath { get; set; }
+        public WorkNotepad()
+        {
+
+        }
         public bool ProveValue(int value)
         {
             if (value >= 2) return true;
@@ -42,6 +46,14 @@ namespace WorkNotepadLibrary
             savefile.WriteLine(_size);
             savefile.WriteLine(Style);
             savefile.WriteLine(ImagePath);
+            savefile.Close();
+        }
+        public void LoadSettings()
+        {
+            var savefile = new StreamReader("config.ini");
+            Size = Convert.ToInt32(savefile.ReadLine());
+            Style = savefile.ReadLine();
+            ImagePath = savefile.ReadLine();
             savefile.Close();
         }
     }

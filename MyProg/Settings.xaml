@@ -13,7 +13,7 @@
             </GroupBox.Header>
             <Grid>
                 <Label Width="90" Height="40" Content="Размер:" Foreground="Black" FontSize="22" HorizontalAlignment="Left" Margin="10,10,0,248" />
-                <TextBox x:Name="FontSize" Text="12" Width="35" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="22"  Margin="0,15,142,0" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="Size" Text="12" Width="35" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="22"  Margin="0,15,142,0" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 <Label Content="Стиль:" Width="90" Height="40" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,50,182,0" FontSize="22"/>
                 <ComboBox x:Name="StyleSelect" Width="167" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,62,10,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                     <ComboBoxItem x:Name="StyleArial_ComboBox" Content="Arial" FontSize="12" FontFamily="Arial" Selected="StyleArial_ComboBox_Selected"/>
