@@ -15,7 +15,15 @@ namespace WorkNotepadLibrary
         public string ImagePath { get; set; }
         public WorkNotepad()
         {
-
+            try
+            {
+                LoadSettings();
+            }
+            catch
+            {
+                _size = 12;
+                SaveSettings();
+            }
         }
         public bool ProveValue(int value)
         {
