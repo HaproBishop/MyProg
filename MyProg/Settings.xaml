@@ -13,7 +13,7 @@
             </GroupBox.Header>
             <Grid>
                 <Label Width="90" Height="40" Content="Размер:" Foreground="Black" FontSize="22" HorizontalAlignment="Left" Margin="10,10,0,248" />
-                <TextBox x:Name="FontChangeSize_TextBox" Text="12" Width="35" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="22"  Margin="0,15,142,0" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="FontSize" Text="12" Width="35" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="22"  Margin="0,15,142,0" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 <Label Content="Стиль:" Width="90" Height="40" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,50,182,0" FontSize="22"/>
                 <ComboBox x:Name="StyleSelect" Width="167" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,62,10,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                     <ComboBoxItem x:Name="StyleArial_ComboBox" Content="Arial" FontSize="12" FontFamily="Arial" Selected="StyleArial_ComboBox_Selected"/>
@@ -21,10 +21,10 @@
                     <ComboBoxItem x:Name="StyleSegoeUI" Content="Segoe UI" FontSize="12" FontFamily="Segoe UI" IsSelected="True" Selected="StyleSegoeUI_Selected"/>
                     <ComboBoxItem x:Name="TimesNewRoman" Content="Times New Roman" FontSize="12" FontFamily="Times New Roman" Selected="TimesNewRoman_Selected"/>
                 </ComboBox>
-                <Button x:Name="Accept" Content="Подтвердить" HorizontalAlignment="Left" Margin="10,251,0,0" VerticalAlignment="Top" Click="Accept_Click" Width="262" Height="30" FontSize="17"/>
-                <TextBox HorizontalAlignment="Left" Height="21" Margin="10,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262"/>
+                <Button x:Name="Accept" Content="Подтвердить" HorizontalAlignment="Left" Margin="10,251,0,0" VerticalAlignment="Top" Click="Accept_Click" Width="262" Height="30" FontSize="17" ToolTip="Сохраняет текущие настройки блокнота"/>
+                <TextBox x:Name="ImagePath" HorizontalAlignment="Left" Height="21" Margin="10,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" IsReadOnly="True"/>
                 <Label Content="Текущий путь к фону:" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="130" Height="30"/>
-                <Button Content="Установить фон " HorizontalAlignment="Left" Margin="171,156,0,0" VerticalAlignment="Top" Width="101"/>
+                <Button x:Name="LoadImage" Content="Установить фон " HorizontalAlignment="Left" Margin="171,156,0,0" VerticalAlignment="Top" Width="101" Click="LoadImage_Click"/>
             </Grid>
         </GroupBox>
     </Grid>

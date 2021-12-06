@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WorkNotepad;
+using WorkNotepadLibrary;
 
 namespace MyProg
 {
@@ -24,10 +25,10 @@ namespace MyProg
         {
             InitializeComponent();
         }
-
+        WorkNotepad _worknotepad;
         private void LImpact_Selected(object sender, RoutedEventArgs e)
         {
-          
+            
         }
         public static void Settings_Click()
         {
@@ -36,7 +37,7 @@ namespace MyProg
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            Class_WorkNotepad.SaveSettings(FontChangeSize_TextBox.Text, StyleSelect.Text);            
+            _worknotepad.SaveSettings();            
         }
 
         private void StyleSegoeUI_Selected(object sender, RoutedEventArgs e)
@@ -52,6 +53,21 @@ namespace MyProg
         private void StyleArial_ComboBox_Selected(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void LoadImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog loadimage = new OpenFileDialog
+            {
+                Title = "Выбор картинки",
+                Filter = "Фон(.png) | *.png | Фон(.jpg) | *.jpg | Все фоны(.*) | *.*",
+                FilterIndex = 1,
+                DefaultExt = ".png",
+            };
+            if (loadimage.ShowDialog() == true)
+            {
+                ImagePath.Text = _worknotepad.ImagePath = loadimage.FileName;
+            }
         }
     }
 }

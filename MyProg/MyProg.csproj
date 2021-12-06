@@ -106,9 +106,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WorkNotepad\WorkNotepad.csproj">
+    <ProjectReference Include="..\WorkNotepad\WorkNotepadLibrary.csproj">
       <Project>{adb06369-0fc6-4659-81c8-0ce4c867b95a}</Project>
-      <Name>WorkNotepad</Name>
+      <Name>WorkNotepadLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

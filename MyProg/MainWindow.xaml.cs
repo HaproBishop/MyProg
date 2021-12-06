@@ -13,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WorkNotepad;
+using WorkNotepadLibrary;
+using System.Windows.Threading;
 
 namespace MyProg
 {
@@ -26,8 +27,7 @@ namespace MyProg
         {
             InitializeComponent();    
             
-        }
-        
+        }        
         private void Open_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog
@@ -38,7 +38,7 @@ namespace MyProg
             };
             if (open.ShowDialog() == true)
             {
-                OwnText.Text = Class_WorkNotepad.OpenFile(open.FileName);
+                OwnText.Text = WorkNotepad.OpenFile(open.FileName);
             }
         }
 
@@ -52,7 +52,7 @@ namespace MyProg
             };
             if (save.ShowDialog() == true)
             {
-                Class_WorkNotepad.SaveFile(save.FileName, OwnText.Text);
+                WorkNotepad.SaveFile(save.FileName, OwnText.Text);
             }
         }
 
@@ -66,13 +66,25 @@ namespace MyProg
             SettingsWindow settingswindow = new SettingsWindow
             {
                 Owner = this
-            };
+            };            
             settingswindow.ShowDialog();
        }
 
         private void AboutProgram_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Here must be name of developer? :D");
+        }
+
+        private void OwnWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            DispatcherTimer time = new DispatcherTimer();
+            time.Tick += Time_Tick;
+            time.Interval = new TimeSpan();
+        }
+
+        private void Time_Tick(object sender, EventArgs e)
+        {
+            
         }
     }
 }
