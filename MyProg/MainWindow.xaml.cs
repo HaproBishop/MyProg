@@ -72,7 +72,9 @@ namespace MyProg
 
         private void AboutProgram_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Name of the developer must be here? :D");
+            MessageBox.Show("Name of the developer must be here? :D\n" +
+                "Ok. Hapro is developer :D\n" +
+                "For pleasure :3");
         }
 
         private void OwnWindow_Loaded(object sender, RoutedEventArgs e)

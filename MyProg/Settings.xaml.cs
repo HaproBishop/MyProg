@@ -37,7 +37,9 @@ namespace MyProg
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            _worknotepad.SaveSettings();            
+            _worknotepad.SaveSizeAndStyleIntoObject(Convert.ToInt32(Size.Text), StyleSelect.SelectedItem);
+            _worknotepad.ImagePath = ImagePath.Text.ToString();
+            _worknotepad.SaveSettings();
         }
 
         private void StyleSegoeUI_Selected(object sender, RoutedEventArgs e)
@@ -62,12 +64,27 @@ namespace MyProg
                 Title = "Выбор картинки",
                 Filter = "Фон(.png) | *.png | Фон(.jpg) | *.jpg | Все фоны(.*) | *.*",
                 FilterIndex = 1,
-                DefaultExt = ".png",
+                DefaultExt = "*.png",
             };
             if (loadimage.ShowDialog() == true)
             {
                 ImagePath.Text = _worknotepad.ImagePath = loadimage.FileName;
             }
+        }
+
+        private void SettingsWin_Loaded(object sender, RoutedEventArgs e)
+        {
+            _worknotepad.LoadSettings();
+            Size.Text = _worknotepad.Size.ToString();
+            try
+            {
+                StyleSelect.SelectedItem = (ComboBoxItem)_worknotepad.Style;
+            }
+            catch
+            {
+                MessageBox.Show("Значение стиля не было установлено. Будет использоваться по умолчанию.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            ImagePath.Text = _worknotepad.ImagePath;
         }
     }
 }

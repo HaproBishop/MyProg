@@ -11,7 +11,7 @@ namespace WorkNotepadLibrary
     {
         int _size;
         public int Size { get => _size; set => _size = ProveValue(value) ? value : throw new Exception("Неудовлетворительное число для данного свойства"); }
-        public string Style { get; set; }
+        public object Style { get; set; }
         public string ImagePath { get; set; }
         public WorkNotepad()
         {
@@ -19,9 +19,9 @@ namespace WorkNotepadLibrary
             {
                 LoadSettings();
             }
-            catch
+            catch//Задавать стиль для текста в блокноте нужно по умолчанию через интерефейс :3
             {
-                _size = 12;
+                _size = 12;               
                 SaveSettings();
             }
         }
@@ -43,7 +43,7 @@ namespace WorkNotepadLibrary
             infile.WriteLine(text);
             infile.Close();
         }
-        public void SaveSizeAndStyleIntoObject(int size, string style)
+        public void SaveSizeAndStyleIntoObject(int size, object style)
         {            
             Size = size;
             Style = style;
@@ -59,10 +59,17 @@ namespace WorkNotepadLibrary
         public void LoadSettings()
         {
             var savefile = new StreamReader("config.ini");
-            Size = Convert.ToInt32(savefile.ReadLine());
-            Style = savefile.ReadLine();
-            ImagePath = savefile.ReadLine();
-            savefile.Close();
+            try
+            {
+                Size = Convert.ToInt32(savefile.ReadLine());
+                Style = savefile.ReadLine();
+                ImagePath = savefile.ReadLine();
+                savefile.Close();
+            }
+            catch
+            {
+                savefile.Close();
+            }
         }
     }
 }
