@@ -70,11 +70,15 @@ namespace MyProg
             };            
             settingswindow.ShowDialog();
             if (DataNotepad.ImagePath != "")
-            {                
-                Background.Source = new BitmapImage
-                {
-                    UriSource = new Uri(DataNotepad.ImagePath),
-                };
+            {
+                OwnText.FontSize = DataNotepad.FontSize;
+                OwnText.FontFamily = new FontFamily(DataNotepad.FontFamily);
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.UriSource = new Uri(DataNotepad.ImagePath);
+                image.EndInit();
+                Background.Source = image;
+                DefaultBackground.Background = Brushes.Black;
             }
        }
 
@@ -103,7 +107,7 @@ namespace MyProg
         }
         private void SetBeginSettings()
         {
-            OwnText.FontSize = DataNotepad.Size;
+            OwnText.FontSize = DataNotepad.FontSize;
             try
             {
                 OwnText.FontFamily = new FontFamily(DataNotepad.FontFamily);
@@ -117,10 +121,12 @@ namespace MyProg
             {
                 try
                 {
-                    Background.Source = new BitmapImage
-                    {
-                        UriSource = new Uri(DataNotepad.ImagePath),
-                    };
+                    BitmapImage image = new BitmapImage();
+                    image.BeginInit();
+                    image.UriSource = new Uri(DataNotepad.ImagePath);
+                    image.EndInit();                    
+                    Background.Source = image;
+                    DefaultBackground.Background = Brushes.Black;
                 }
                 catch
                 {

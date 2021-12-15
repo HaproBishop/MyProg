@@ -9,9 +9,9 @@ namespace WorkNotepadLibrary
 {
     public class WorkNotepad
     {
-        const int _defaultsize = 12;
-        int _size;
-        public int Size { get => _size; set => _size = ProveValue(value) ? value : throw new Exception("Неудовлетворительное число для данного свойства"); }       
+        const int _defaultfontsize = 12;
+        int _fontsize;
+        public int FontSize { get => _fontsize; set => _fontsize = ProveValue(value) ? value : throw new Exception("Неудовлетворительное число для данного свойства"); }       
         public string FontFamily { get; set; }
         public string ImagePath { get; set; }
         private string FileName { get; set; }
@@ -23,7 +23,7 @@ namespace WorkNotepadLibrary
             }
             catch//Задавать стиль для текста в блокноте нужно по умолчанию через интерефейс :3
             {
-                _size = _defaultsize;               
+                _fontsize = _defaultfontsize;               
                 SaveSettings();
             }
         }
@@ -53,13 +53,13 @@ namespace WorkNotepadLibrary
         }
         public void SaveSizeAndStyleIntoObject(int size, string fontfamily)
         {            
-            Size = size;
+            FontSize = size;
             FontFamily = fontfamily;
         }
         public void SaveSettings()
         {
             var savefile = new StreamWriter("config.ini");
-            savefile.WriteLine(_size);
+            savefile.WriteLine(_fontsize);
             savefile.WriteLine(FontFamily);
             savefile.WriteLine(ImagePath);
             savefile.Close();
@@ -69,7 +69,7 @@ namespace WorkNotepadLibrary
             var savefile = new StreamReader("config.ini");
             try
             {
-                Size = Convert.ToInt32(savefile.ReadLine());
+                FontSize = Convert.ToInt32(savefile.ReadLine());
             }
             finally
             {

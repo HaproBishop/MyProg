@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProg"
         mc:Ignorable="d"
-        Title="Settings" Height="350" Width="310" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Loaded="SettingsWin_Loaded">
+        Title="Settings" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Loaded="SettingsWin_Loaded" SizeToContent="WidthAndHeight">
     <Grid>
         <GroupBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="304">
             <GroupBox.Header>
@@ -17,11 +17,11 @@
                 <Label Content="Стиль:" Width="90" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,55,0,0" FontSize="22"/>
                 <ComboBox x:Name="FamilySelect" Width="161" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,67,26,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                     <ComboBoxItem x:Name="FamilyArial" Content="Arial" FontSize="12" FontFamily="Arial"/>
-                    <ComboBoxItem x:Name="FamilyImpact" Content="Impact" FontSize="12"/>
+                    <ComboBoxItem x:Name="FamilyImpact" Content="Impact" FontSize="12" FontFamily="Impact"/>
                     <ComboBoxItem x:Name="FamilySegoeUI" Content="Segoe UI" FontSize="12" FontFamily="Segoe UI" IsSelected="True"/>
                     <ComboBoxItem x:Name="FamilyTimesNewRoman" Content="Times New Roman" FontSize="12" FontFamily="Times New Roman"/>
                 </ComboBox>
-                <Button x:Name="Accept" Content="Подтвердить" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="Accept_Click" Width="262" Height="30" FontSize="17" ToolTip="Сохраняет текущие настройки блокнота"/>
+                <Button x:Name="SaveSettings" Content="Сохранить настройки" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="SaveSettings_Click" Width="262" Height="30" FontSize="17" ToolTip="Сохраняет текущие настройки блокнота"/>
                 <TextBox x:Name="ImagePath" HorizontalAlignment="Left" Height="21" Margin="10,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" IsReadOnly="True"/>
                 <Label Content="Текущий путь к фону:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Width="130" Height="30"/>
                 <Button x:Name="LoadImage" Content="Установить фон" HorizontalAlignment="Left" Margin="171,194,0,0" VerticalAlignment="Top" Width="101" Click="LoadImage_Click"/>

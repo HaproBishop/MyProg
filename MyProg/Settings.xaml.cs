@@ -25,11 +25,11 @@ namespace MyProg
         {
             InitializeComponent();
         }
-        private void Accept_Click(object sender, RoutedEventArgs e)
+        private void SaveSettings_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                MainWindow.DataNotepad.SaveSizeAndStyleIntoObject(Convert.ToInt32(Size.Text), FamilySelect.SelectedItem.ToString());
+                MainWindow.DataNotepad.SaveSizeAndStyleIntoObject(Convert.ToInt32(Size.Text), ((ComboBoxItem)FamilySelect.SelectedItem).Content.ToString());
             }
             catch
             {
@@ -61,11 +61,14 @@ namespace MyProg
         private void SettingsWin_Loaded(object sender, RoutedEventArgs e)
         {
             MainWindow.DataNotepad.LoadSettings();
-            Size.Text = MainWindow.DataNotepad.Size.ToString();
+            Size.Text = MainWindow.DataNotepad.FontSize.ToString();
             ImagePath.Text = MainWindow.DataNotepad.ImagePath;
             try
             {
-                FamilySelect.SelectedItem = MainWindow.DataNotepad.FontFamily;
+                for (int i = 0; i < FamilySelect.Items.Count; i++)
+                {
+                    if (FamilySelect.Items[i].ToString() == MainWindow.DataNotepad.FontFamily) FamilySelect.SelectedItem = FamilySelect.Items[i];
+                }
             }
             catch
             {
