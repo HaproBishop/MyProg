@@ -29,7 +29,7 @@ namespace MyProg
         {
             try
             {
-                MainWindow.DataNotepad.SaveSizeAndStyleIntoObject(Convert.ToInt32(Size.Text), ((ComboBoxItem)FamilySelect.SelectedItem).Content.ToString());
+                MainWindow.DataNotepad.SaveSizeAndStyleIntoObject(Convert.ToInt32(Size.Text), FamilySelect.Text);
             }
             catch
             {
@@ -65,10 +65,7 @@ namespace MyProg
             ImagePath.Text = MainWindow.DataNotepad.ImagePath;
             try
             {
-                for (int i = 0; i < FamilySelect.Items.Count; i++)
-                {
-                    if (FamilySelect.Items[i].ToString() == MainWindow.DataNotepad.FontFamily) FamilySelect.SelectedItem = FamilySelect.Items[i];
-                }
+                FamilySelect.Text = MainWindow.DataNotepad.FontFamily;
             }
             catch
             {
