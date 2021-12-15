@@ -25,36 +25,22 @@ namespace MyProg
         {
             InitializeComponent();
         }
-        WorkNotepad _worknotepad = new WorkNotepad();
-        private void LImpact_Selected(object sender, RoutedEventArgs e)
-        {
-            
-        }
-        public static void Settings_Click()
-        {
-            
-        }
-
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            _worknotepad.SaveSizeAndStyleIntoObject(Convert.ToInt32(Size.Text), StyleSelect.SelectedItem);
-            _worknotepad.ImagePath = ImagePath.Text.ToString();
-            _worknotepad.SaveSettings();
-        }
-
-        private void StyleSegoeUI_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void TimesNewRoman_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void StyleArial_ComboBox_Selected(object sender, RoutedEventArgs e)
-        {
-
+            try
+            {
+                MainWindow.DataNotepad.SaveSizeAndStyleIntoObject(Convert.ToInt32(Size.Text), FamilySelect.SelectedItem.ToString());
+            }
+            catch
+            {
+                MessageBox.Show("Сохранение размера и стиля не было завершено, так как введено некорректное значение в поле", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                MainWindow.DataNotepad.ImagePath = ImagePath.Text.ToString();
+                MainWindow.DataNotepad.SaveSettings();
+            }
         }
 
         private void LoadImage_Click(object sender, RoutedEventArgs e)
@@ -68,23 +54,23 @@ namespace MyProg
             };
             if (loadimage.ShowDialog() == true)
             {
-                ImagePath.Text = _worknotepad.ImagePath = loadimage.FileName;
+                ImagePath.Text = MainWindow.DataNotepad.ImagePath = loadimage.FileName;
             }
         }
 
         private void SettingsWin_Loaded(object sender, RoutedEventArgs e)
         {
-            _worknotepad.LoadSettings();
-            Size.Text = _worknotepad.Size.ToString();
+            MainWindow.DataNotepad.LoadSettings();
+            Size.Text = MainWindow.DataNotepad.Size.ToString();
+            ImagePath.Text = MainWindow.DataNotepad.ImagePath;
             try
             {
-                StyleSelect.SelectedItem = (ComboBoxItem)_worknotepad.Style;
+                FamilySelect.SelectedItem = MainWindow.DataNotepad.FontFamily;
             }
             catch
             {
                 MessageBox.Show("Значение стиля не было установлено. Будет использоваться по умолчанию.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            ImagePath.Text = _worknotepad.ImagePath;
+            }           
         }
     }
 }

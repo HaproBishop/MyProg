@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProg"
         mc:Ignorable="d"
-        Title="Notepad" MinHeight="250" MinWidth="350" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" Loaded="OwnWindow_Loaded">
+        Title="Notepad" Icon="Unknown.ico" MinHeight="250" MinWidth="350" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" Loaded="OwnWindow_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -21,7 +21,7 @@
                 <GradientStop Color="#FF16395D"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Image x:Name="Background"/>
+        <Image x:Name="Background" Stretch="Fill"/>
         <Menu VerticalAlignment="Top" MinWidth="250">
             <MenuItem Header="Файл">
                 <MenuItem x:Name="Open" Header="Открыть" Click="Open_Click"/>
@@ -32,7 +32,7 @@
             <MenuItem x:Name="Settings" Header="Настройки" Click="Settings_Click"/>
             <MenuItem x:Name="AboutProgram" Header="О программе" Click="AboutProgram_Click"/>
         </Menu>
-        <TextBox x:Name="OwnText" Margin="0,0,0,1" TextWrapping="Wrap" Background="#BFFFFFFF" AcceptsReturn="True" AcceptsTab="True" MinWidth="100" MinHeight="100" Grid.Row="1"/>
+        <TextBox x:Name="OwnText" FontFamily="Segou UI" TextWrapping="Wrap" Background="#BFFFFFFF" AcceptsReturn="True" AcceptsTab="True" Grid.Row="1"/>
         <StatusBar VerticalAlignment="Bottom" Grid.Row="2" Height="25">
             <TextBlock x:Name="Time"/>
             <Separator Width="3"/>

@@ -29,7 +29,7 @@ namespace WorkNotepadLibrary
         }
         public bool ProveValue(int value)
         {
-            if (value >= 2) return true;
+            if (value >= 2 && value <= 72) return true;
             return false;
         }
         public string GetFileName()
@@ -70,10 +70,10 @@ namespace WorkNotepadLibrary
             try
             {
                 Size = Convert.ToInt32(savefile.ReadLine());
-                FontFamily = savefile.ReadLine();
             }
             finally
             {
+                FontFamily = savefile.ReadLine();
                 ImagePath = savefile.ReadLine();
                 savefile.Close();
             }

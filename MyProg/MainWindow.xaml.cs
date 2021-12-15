@@ -27,8 +27,8 @@ namespace MyProg
         {
             InitializeComponent();                
         }
-        private WorkNotepad _datanotepad = new WorkNotepad();
-        public WorkNotepad DataNotepad { get => _datanotepad; set => _datanotepad = value.Clone(); }
+        private static WorkNotepad _datanotepad = new WorkNotepad();
+        public static WorkNotepad DataNotepad { get => _datanotepad; set => _datanotepad = value.Clone(); }
         private void Open_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog
@@ -69,6 +69,13 @@ namespace MyProg
                 Owner = this
             };            
             settingswindow.ShowDialog();
+            if (DataNotepad.ImagePath != "")
+            {                
+                Background.Source = new BitmapImage
+                {
+                    UriSource = new Uri(DataNotepad.ImagePath),
+                };
+            }
        }
 
         private void AboutProgram_Click(object sender, RoutedEventArgs e)
@@ -84,6 +91,8 @@ namespace MyProg
             time.Tick += Time_Tick;
             time.Interval = new TimeSpan(0,0,1);
             time.IsEnabled = true;
+            DataNotepad.LoadSettings();
+            SetBeginSettings();
         }
 
         private void Time_Tick(object sender, EventArgs e)
@@ -91,6 +100,34 @@ namespace MyProg
             DateTime data = DateTime.Now;
             Time.Text = data.ToString("HH:mm");
             Date.Text = data.ToString("dd.MM.yyyy");
+        }
+        private void SetBeginSettings()
+        {
+            OwnText.FontSize = DataNotepad.Size;
+            try
+            {
+                OwnText.FontFamily = new FontFamily(DataNotepad.FontFamily);
+            }
+            catch
+            {
+                MessageBox.Show("Стиль текста не установлен, поэтому был установлен по умолчанию (Segou UI)","Уведомление",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                try
+                {
+                    Background.Source = new BitmapImage
+                    {
+                        UriSource = new Uri(DataNotepad.ImagePath),
+                    };
+                }
+                catch
+                {
+                    MessageBox.Show("Фон не был загружен для блокнота! Возможно файл был перемещен или " +
+                        "поврежден!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }
