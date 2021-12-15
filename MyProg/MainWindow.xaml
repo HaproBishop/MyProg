@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProg"
         mc:Ignorable="d"
-        Title="Notepad" Height="446" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" Loaded="OwnWindow_Loaded">
+        Title="Notepad" MinHeight="250" MinWidth="350" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" Loaded="OwnWindow_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -21,7 +21,8 @@
                 <GradientStop Color="#FF16395D"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Menu VerticalAlignment="Top" MinWidth="250" Height="18">
+        <Image x:Name="Background"/>
+        <Menu VerticalAlignment="Top" MinWidth="250">
             <MenuItem Header="Файл">
                 <MenuItem x:Name="Open" Header="Открыть" Click="Open_Click"/>
                 <MenuItem x:Name="Save" Header="Сохранить" Click="Save_Click"/>

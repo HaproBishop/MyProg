@@ -25,9 +25,10 @@ namespace MyProg
     {
         public MainWindow()
         {
-            InitializeComponent();    
-            
-        }        
+            InitializeComponent();                
+        }
+        private WorkNotepad _datanotepad = new WorkNotepad();
+        public WorkNotepad DataNotepad { get => _datanotepad; set => _datanotepad = value.Clone(); }
         private void Open_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog
@@ -38,7 +39,7 @@ namespace MyProg
             };
             if (open.ShowDialog() == true)
             {
-                OwnText.Text = WorkNotepad.OpenFile(open.FileName);
+                OwnText.Text = DataNotepad.OpenFile(open.FileName);
             }
         }
 
@@ -52,7 +53,7 @@ namespace MyProg
             };
             if (save.ShowDialog() == true)
             {
-                WorkNotepad.SaveFile(save.FileName, OwnText.Text);
+                DataNotepad.SaveFile(save.FileName, OwnText.Text);
             }
         }
 

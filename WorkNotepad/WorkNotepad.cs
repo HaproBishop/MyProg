@@ -9,10 +9,12 @@ namespace WorkNotepadLibrary
 {
     public class WorkNotepad
     {
+        const int _defaultsize = 12;
         int _size;
-        public int Size { get => _size; set => _size = ProveValue(value) ? value : throw new Exception("Неудовлетворительное число для данного свойства"); }
-        public object Style { get; set; }
+        public int Size { get => _size; set => _size = ProveValue(value) ? value : throw new Exception("Неудовлетворительное число для данного свойства"); }       
+        public string FontFamily { get; set; }
         public string ImagePath { get; set; }
+        private string FileName { get; set; }
         public WorkNotepad()
         {
             try
@@ -21,7 +23,7 @@ namespace WorkNotepadLibrary
             }
             catch//Задавать стиль для текста в блокноте нужно по умолчанию через интерефейс :3
             {
-                _size = 12;               
+                _size = _defaultsize;               
                 SaveSettings();
             }
         }
@@ -30,29 +32,35 @@ namespace WorkNotepadLibrary
             if (value >= 2) return true;
             return false;
         }
-        public static string OpenFile(string filename) 
+        public string GetFileName()
         {
+            return FileName;
+        }
+        public string OpenFile(string filename) 
+        {
+            FileName = filename;
             var outfile = new StreamReader(filename);
             string owntext = Convert.ToString(outfile.ReadToEnd());
             outfile.Close();
             return owntext;
         }
-        public static void SaveFile(string filename, in string text)
+        public void SaveFile(string filename, in string text)
         {
+            FileName = filename;
             StreamWriter infile = new StreamWriter(filename);
             infile.WriteLine(text);
             infile.Close();
         }
-        public void SaveSizeAndStyleIntoObject(int size, object style)
+        public void SaveSizeAndStyleIntoObject(int size, string fontfamily)
         {            
             Size = size;
-            Style = style;
+            FontFamily = fontfamily;
         }
         public void SaveSettings()
         {
             var savefile = new StreamWriter("config.ini");
             savefile.WriteLine(_size);
-            savefile.WriteLine(Style);
+            savefile.WriteLine(FontFamily);
             savefile.WriteLine(ImagePath);
             savefile.Close();
         }
@@ -62,14 +70,17 @@ namespace WorkNotepadLibrary
             try
             {
                 Size = Convert.ToInt32(savefile.ReadLine());
-                Style = savefile.ReadLine();
+                FontFamily = savefile.ReadLine();
+            }
+            finally
+            {
                 ImagePath = savefile.ReadLine();
                 savefile.Close();
             }
-            catch
-            {
-                savefile.Close();
-            }
+        }
+        public WorkNotepad Clone()
+        {
+            return (WorkNotepad)MemberwiseClone();
         }
     }
 }
