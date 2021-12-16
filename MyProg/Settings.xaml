@@ -5,27 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProg"
         mc:Ignorable="d"
-        Title="Settings" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Loaded="SettingsWin_Loaded" SizeToContent="WidthAndHeight">
+        Title="Настройки" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Loaded="SettingsWin_Loaded" SizeToContent="WidthAndHeight">
     <Grid>
         <GroupBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="304">
             <GroupBox.Header>
-                <TextBlock Text="Шрифт" FontSize="17"/>
+                <TextBlock Text="Шрифт" FontSize="20"/>
             </GroupBox.Header>
-            <Grid>
-                <Label Width="90" Height="40" Content="Размер:" Foreground="Black" FontSize="22" HorizontalAlignment="Left" Margin="10,10,0,241" VerticalAlignment="Top"/>
-                <TextBox x:Name="Size" Text="12" Width="35" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="22"  Margin="0,15,152,0" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Label Content="Стиль:" Width="90" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,55,0,0" FontSize="22"/>
-                <ComboBox x:Name="FamilySelect" Width="161" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,67,26,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                    <ComboBoxItem x:Name="FamilyArial" Content="Arial" FontSize="12" FontFamily="Arial"/>
-                    <ComboBoxItem x:Name="FamilyImpact" Content="Impact" FontSize="12" FontFamily="Impact"/>
-                    <ComboBoxItem x:Name="FamilySegoeUI" Content="Segoe UI" FontSize="12" FontFamily="Segoe UI" IsSelected="True"/>
-                    <ComboBoxItem x:Name="FamilyTimesNewRoman" Content="Times New Roman" FontSize="12" FontFamily="Times New Roman"/>
+            <DockPanel>
+                <DockPanel DockPanel.Dock="Top">
+                <Label Width="90" Height="40" Content="Размер:" Foreground="Black" FontSize="22" DockPanel.Dock="Left"/>
+                    <TextBox x:Name="Size" Text="12" Width="35" Height="35" FontSize="22" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Top">
+                <Label Content="Стиль:" Width="90" Height="40" FontSize="22"/>
+                <ComboBox x:Name="FamilySelect" Width="161" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                    <ComboBoxItem Content="Arial" FontSize="12" FontFamily="Arial"/>
+                    <ComboBoxItem Content="Impact" FontSize="12" FontFamily="Impact"/>
+                    <ComboBoxItem Content="Segoe UI" FontSize="12" FontFamily="Segoe UI" IsSelected="True"/>
+                    <ComboBoxItem Content="Times New Roman" FontSize="12" FontFamily="Times New Roman"/>
                 </ComboBox>
-                <Button x:Name="SaveSettings" Content="Сохранить настройки" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="SaveSettings_Click" Width="262" Height="30" FontSize="17" ToolTip="Сохраняет текущие настройки блокнота"/>
-                <TextBox x:Name="ImagePath" HorizontalAlignment="Left" Height="21" Margin="10,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" IsReadOnly="True"/>
-                <Label Content="Текущий путь к фону:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Width="130" Height="30"/>
-                <Button x:Name="LoadImage" Content="Установить фон" HorizontalAlignment="Left" Margin="171,194,0,0" VerticalAlignment="Top" Width="101" Click="LoadImage_Click"/>
-            </Grid>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Top">
+                    <Label Content="Текущий путь к фону:" Width="130" Height="30" DockPanel.Dock="Top" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="ImagePath" Height="21" DockPanel.Dock="Top" TextWrapping="Wrap" HorizontalAlignment="Stretch" IsReadOnly="True" Margin="3"/>
+                    <Button x:Name="LoadImage" Content="Установить фон" Width="101" Click="LoadImage_Click" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Margin="3"/>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Top" Margin="10">
+                <CheckBox x:Name="Cursive"  Content="Курсив" HorizontalAlignment="Left" IsChecked="False" FontStyle="Italic"/>
+                <CheckBox x:Name="Bold" Content="Жирный" HorizontalAlignment="Right" VerticalAlignment="Top" IsChecked="False" FontWeight="Bold"/>
+                </DockPanel>
+                <Button x:Name="SaveSettings" Margin="10" DockPanel.Dock="Bottom" Content="Сохранить настройки" Click="SaveSettings_Click" Height="30" FontSize="17" ToolTip="Сохраняет текущие настройки блокнота"/>
+            </DockPanel>
         </GroupBox>
     </Grid>
 </Window>

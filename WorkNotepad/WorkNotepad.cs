@@ -13,6 +13,8 @@ namespace WorkNotepadLibrary
         int _fontsize;
         public int FontSize { get => _fontsize; set => _fontsize = ProveValue(value) ? value : throw new Exception("Неудовлетворительное число для данного свойства"); }       
         public string FontFamily { get; set; }
+        public bool FontStyleItalic { get; set; }
+        public bool FontWeight { get; set; }
         public string ImagePath { get; set; }
         private string FileName { get; set; }
         public WorkNotepad()
