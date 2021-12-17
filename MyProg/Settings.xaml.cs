@@ -25,6 +25,7 @@ namespace MyProg
         {
             InitializeComponent();
         }
+        bool _savedCfg;
         private void SaveSettings_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -35,6 +36,7 @@ namespace MyProg
             {
                 MessageBox.Show("Сохранение размера и стиля не было завершено, так как введено некорректное значение в поле", "Ошибка",
                     MessageBoxButton.OK, MessageBoxImage.Error);
+                _savedCfg = false;
             }
             finally
             {
@@ -58,6 +60,7 @@ namespace MyProg
             if (loadimage.ShowDialog() == true)
             {
                 ImagePath.Text = MainWindow.DataNotepad.ImagePath = loadimage.FileName;
+                _savedCfg = false;
             }
         }
 
@@ -70,6 +73,17 @@ namespace MyProg
             Bold.IsChecked = MainWindow.DataNotepad.FontWeightBold;
             if(MainWindow.DataNotepad.FontFamily != "") FamilySelect.Text = MainWindow.DataNotepad.FontFamily;
             else MessageBox.Show("Значение стиля не было установлено. Будет использоваться по умолчанию.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+            _savedCfg = true;
+        }
+
+        private void SettingsWin_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Вы ");
+        }
+
+        private void Size_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _savedCfg = false;
         }
     }
 }

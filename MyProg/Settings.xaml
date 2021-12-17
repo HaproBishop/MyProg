@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProg"
         mc:Ignorable="d"
-        Title="Настройки" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Loaded="SettingsWin_Loaded" SizeToContent="WidthAndHeight">
+        Title="Настройки" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Loaded="SettingsWin_Loaded" SizeToContent="WidthAndHeight" Closing="SettingsWin_Closing">
     <Grid>
         <GroupBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="304">
             <GroupBox.Header>
@@ -14,7 +14,7 @@
             <DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                 <Label Width="90" Height="40" Content="Размер:" Foreground="Black" FontSize="22" DockPanel.Dock="Left"/>
-                    <TextBox x:Name="Size" Text="12" Width="35" Height="35" FontSize="22" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <TextBox x:Name="Size" Text="12" Width="35" Height="35" FontSize="22" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="Size_TextChanged"/>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                 <Label Content="Стиль:" Width="90" Height="40" FontSize="22"/>

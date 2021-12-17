@@ -17,6 +17,7 @@ namespace WorkNotepadLibrary
         public bool FontWeightBold { get; set; }
         public string ImagePath { get; set; }
         private string FileName { get; set; }
+        public bool IsSavedCfg { get; private set; }
         public WorkNotepad()
         {
             try
@@ -67,6 +68,7 @@ namespace WorkNotepadLibrary
             savefile.WriteLine(FontStyleItalic);
             savefile.WriteLine(FontWeightBold);
             savefile.Close();
+            IsSavedCfg = true;
         }
         public void LoadSettings()
         {
