@@ -14,7 +14,7 @@ namespace WorkNotepadLibrary
         public int FontSize { get => _fontsize; set => _fontsize = ProveValue(value) ? value : throw new Exception("Неудовлетворительное число для данного свойства"); }       
         public string FontFamily { get; set; }
         public bool FontStyleItalic { get; set; }
-        public bool FontWeight { get; set; }
+        public bool FontWeightBold { get; set; }
         public string ImagePath { get; set; }
         private string FileName { get; set; }
         public WorkNotepad()
@@ -64,6 +64,8 @@ namespace WorkNotepadLibrary
             savefile.WriteLine(_fontsize);
             savefile.WriteLine(FontFamily);
             savefile.WriteLine(ImagePath);
+            savefile.WriteLine(FontStyleItalic);
+            savefile.WriteLine(FontWeightBold);
             savefile.Close();
         }
         public void LoadSettings()
@@ -77,6 +79,8 @@ namespace WorkNotepadLibrary
             {
                 FontFamily = savefile.ReadLine();
                 ImagePath = savefile.ReadLine();
+                FontStyleItalic = Convert.ToBoolean(savefile.ReadLine());
+                FontWeightBold = Convert.ToBoolean(savefile.ReadLine());
                 savefile.Close();
             }
         }

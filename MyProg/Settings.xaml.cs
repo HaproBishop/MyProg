@@ -17,7 +17,7 @@ using WorkNotepadLibrary;
 namespace MyProg
 {
     /// <summary>
-    /// Логика взаимодействия для Vid.xaml
+    /// Логика взаимодействия для Settings.xaml
     /// </summary>
     public partial class SettingsWindow : Window
     {
@@ -39,6 +39,8 @@ namespace MyProg
             finally
             {
                 MainWindow.DataNotepad.ImagePath = ImagePath.Text.ToString();
+                MainWindow.DataNotepad.FontStyleItalic = (bool)Cursive.IsChecked;
+                MainWindow.DataNotepad.FontWeightBold = (bool)Bold.IsChecked;
                 MainWindow.DataNotepad.SaveSettings();
             }
         }
@@ -48,9 +50,9 @@ namespace MyProg
             OpenFileDialog loadimage = new OpenFileDialog
             {
                 Title = "Выбор картинки",
-                Filter = "Фон(.png) | *.png | Фон(.jpg) | *.jpg | Все фоны(.*) | *.*",
+                Filter = "Фон(.png) | *.png | Фон(.jpg) | *.jpg | Все фоны(*.*) | *.*",
                 FilterIndex = 1,
-                DefaultExt = "*.png",
+                DefaultExt = ".png",
             };
             if (loadimage.ShowDialog() == true)
             {
@@ -63,14 +65,10 @@ namespace MyProg
             MainWindow.DataNotepad.LoadSettings();
             Size.Text = MainWindow.DataNotepad.FontSize.ToString();
             ImagePath.Text = MainWindow.DataNotepad.ImagePath;
-            try
-            {
-                FamilySelect.Text = MainWindow.DataNotepad.FontFamily;
-            }
-            catch
-            {
-                MessageBox.Show("Значение стиля не было установлено. Будет использоваться по умолчанию.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }           
+            Cursive.IsChecked = MainWindow.DataNotepad.FontStyleItalic;
+            Bold.IsChecked = MainWindow.DataNotepad.FontWeightBold;
+            if(MainWindow.DataNotepad.FontFamily != "") FamilySelect.Text = MainWindow.DataNotepad.FontFamily;
+            else MessageBox.Show("Значение стиля не было установлено. Будет использоваться по умолчанию.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

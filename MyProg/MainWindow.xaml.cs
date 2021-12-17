@@ -69,15 +69,19 @@ namespace MyProg
                 Owner = this
             };            
             settingswindow.ShowDialog();
-            if (DataNotepad.ImagePath != "")
-            {
                 OwnText.FontSize = DataNotepad.FontSize;
                 OwnText.FontFamily = new FontFamily(DataNotepad.FontFamily);
+            if (DataNotepad.FontStyleItalic) OwnText.FontStyle = FontStyles.Italic;
+            else OwnText.FontStyle = FontStyles.Normal;
+            if (DataNotepad.FontWeightBold) OwnText.FontWeight = FontWeights.Bold;
+            else OwnText.FontWeight = FontWeights.Normal;
+            if (DataNotepad.ImagePath != "")
+            {
                 BitmapImage image = new BitmapImage();
                 image.BeginInit();
                 image.UriSource = new Uri(DataNotepad.ImagePath);
                 image.EndInit();
-                Background.Source = image;
+                BackgroundImage.Source = image;
                 DefaultBackground.Background = Brushes.Black;
             }
        }
@@ -125,13 +129,15 @@ namespace MyProg
                     image.BeginInit();
                     image.UriSource = new Uri(DataNotepad.ImagePath);
                     image.EndInit();                    
-                    Background.Source = image;
+                    BackgroundImage.Source = image;
                     DefaultBackground.Background = Brushes.Black;
                 }
                 catch
                 {
                     MessageBox.Show("Фон не был загружен для блокнота! Возможно файл был перемещен или " +
                         "поврежден!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
+                    _datanotepad.ImagePath = "";
+                    _datanotepad.SaveSettings();
                 }
             }
         }
