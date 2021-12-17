@@ -9,13 +9,28 @@ namespace WorkNotepadLibrary
 {
     public class WorkNotepad
     {
-        const int _defaultfontsize = 12;
-        int _fontsize;
-        public int FontSize { get => _fontsize; set => _fontsize = ProveValue(value) ? value : throw new Exception("Неудовлетворительное число для данного свойства"); }       
-        public string FontFamily { get; set; }
-        public bool FontStyleItalic { get; set; }
-        public bool FontWeightBold { get; set; }
-        public string ImagePath { get; set; }
+        const int _defaultFontSize = 12;
+        int _fontSize;
+        string _fontFamily;
+        bool _fontStyleItalic;
+        bool _fontWeightBold;
+        string _imagePath;
+        string _cancelledFontFamily;
+        bool _cancelledFontStyleItalic;
+        string _link;
+        public int FontSize { get => _fontSize; set => _fontSize = ProveValue(value) ? value : throw new Exception("Неудовлетворительное число для данного свойства"); }
+        public string FontFamily { get => _fontFamily; set { _link = "_fontFamily"; _fontFamily = value;  } }
+        public bool FontStyleItalic 
+        { get => _fontStyleItalic; 
+            set 
+            { 
+                _link = "_fontStyleItalic"; 
+                _fontStyleItalic = value; 
+                IsSavedCfg = false; 
+            } 
+        }
+        public bool FontWeightBold { get => _fontWeightBold; set { _link = "_fontWeightBold"; _fontWeightBold = value; IsSavedCfg = false; } }
+        public string ImagePath { get => _imagePath; set { _imagePath = value; IsSavedCfg = false; } }
         private string FileName { get; set; }
         public bool IsSavedCfg { get; private set; }
         public WorkNotepad()
@@ -26,13 +41,26 @@ namespace WorkNotepadLibrary
             }
             catch//Задавать стиль для текста в блокноте нужно по умолчанию через интерефейс :3
             {
-                _fontsize = _defaultfontsize;               
+                _fontSize = _defaultFontSize;               
                 SaveSettings();
             }
         }
         public bool ProveValue(int value)
         {
             if (value >= 2 && value <= 72) return true;
+            return false;
+        }
+        private bool ComparingPreviousAndCurrent<T>(T value)
+        {
+            try
+            {
+                bool Avalue = Convert.ToBoolean(value);
+                if()
+            }
+            catch
+            {
+
+            }
             return false;
         }
         public string GetFileName()
@@ -62,7 +90,7 @@ namespace WorkNotepadLibrary
         public void SaveSettings()
         {
             var savefile = new StreamWriter("config.ini");
-            savefile.WriteLine(_fontsize);
+            savefile.WriteLine(_fontSize);
             savefile.WriteLine(FontFamily);
             savefile.WriteLine(ImagePath);
             savefile.WriteLine(FontStyleItalic);
@@ -81,9 +109,10 @@ namespace WorkNotepadLibrary
             {
                 FontFamily = savefile.ReadLine();
                 ImagePath = savefile.ReadLine();
-                FontStyleItalic = Convert.ToBoolean(savefile.ReadLine());
-                FontWeightBold = Convert.ToBoolean(savefile.ReadLine());
+                _cancelledChangesOfBools[0] = FontStyleItalic = Convert.ToBoolean(savefile.ReadLine());
+                _cancelledChangesOfBools[1] = FontWeightBold = Convert.ToBoolean(savefile.ReadLine());
                 savefile.Close();
+                IsSavedCfg = true;
             }
         }
         public WorkNotepad Clone()

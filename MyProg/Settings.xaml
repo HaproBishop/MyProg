@@ -14,7 +14,7 @@
             <DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                 <Label Width="90" Height="40" Content="Размер:" Foreground="Black" FontSize="22" DockPanel.Dock="Left"/>
-                    <TextBox x:Name="Size" Text="12" Width="35" Height="35" FontSize="22" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="Size_TextChanged"/>
+                    <TextBox x:Name="Size" Text="12" Width="35" Height="35" FontSize="22" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                 <Label Content="Стиль:" Width="90" Height="40" FontSize="22"/>
