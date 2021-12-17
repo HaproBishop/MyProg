@@ -42,6 +42,7 @@ namespace MyProg
                 MainWindow.DataNotepad.FontStyleItalic = (bool)Cursive.IsChecked;
                 MainWindow.DataNotepad.FontWeightBold = (bool)Bold.IsChecked;
                 MainWindow.DataNotepad.SaveSettings();
+                MessageBox.Show("Сохранение выполнено успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

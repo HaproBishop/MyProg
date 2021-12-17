@@ -123,21 +123,25 @@ namespace MyProg
             }
             finally
             {
-                try
+                if (_datanotepad.ImagePath != "")
                 {
-                    BitmapImage image = new BitmapImage();
-                    image.BeginInit();
-                    image.UriSource = new Uri(DataNotepad.ImagePath);
-                    image.EndInit();                    
-                    BackgroundImage.Source = image;
-                    DefaultBackground.Background = Brushes.Black;
-                }
-                catch
-                {
-                    MessageBox.Show("Фон не был загружен для блокнота! Возможно файл был перемещен или " +
-                        "поврежден!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
-                    _datanotepad.ImagePath = "";
-                    _datanotepad.SaveSettings();
+                    try
+                    {
+                        BitmapImage image = new BitmapImage();
+                        image.BeginInit();
+                        image.UriSource = new Uri(DataNotepad.ImagePath);
+                        image.EndInit();
+                        BackgroundImage.Source = image;
+                        DefaultBackground.Background = Brushes.Black;
+                    }
+                    catch
+                    {
+
+                        MessageBox.Show("Фон не был загружен для блокнота! Возможно файл был перемещен или " +
+                            "поврежден!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
+                        _datanotepad.ImagePath = "";
+                        _datanotepad.SaveSettings();
+                    }
                 }
             }
         }
