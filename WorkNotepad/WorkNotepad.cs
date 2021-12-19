@@ -17,6 +17,7 @@ namespace WorkNotepadLibrary
         public bool FontWeightBold { get; set; }
         public string ImagePath { get; set; }
         private string FileName { get; set; }
+        public bool IsSavedOwnText { get; set; }
         public WorkNotepad()
         {
             try
@@ -31,7 +32,7 @@ namespace WorkNotepadLibrary
         }
         public bool ProveValue(int value)
         {
-            if (value >= 2 && value <= 72) return true;
+            if (value >= 8 && value <= 72) return true;
             return false;
         }
         public string GetFileName()
@@ -46,16 +47,20 @@ namespace WorkNotepadLibrary
             outfile.Close();
             return owntext;
         }
-        public void SaveFile(string filename, in string text)
+        public void SaveFile(in string owntext)
         {
-            FileName = filename;
-            StreamWriter infile = new StreamWriter(filename);
-            infile.WriteLine(text);
+            StreamWriter infile = new StreamWriter(FileName);
+            infile.WriteLine(owntext);
             infile.Close();
         }
-        public void SaveSizeAndStyleIntoObject(int size, string fontfamily)
+        public void SaveFile(string filename, in string owntext)
+        {
+            FileName = filename;
+            SaveFile(in owntext);
+        }
+        public void SaveSizeAndStyleIntoObject(int fontsize, string fontfamily)
         {            
-            FontSize = size;
+            FontSize = fontsize;
             FontFamily = fontfamily;
         }
         public void SaveSettings()
@@ -67,6 +72,7 @@ namespace WorkNotepadLibrary
             savefile.WriteLine(FontStyleItalic);
             savefile.WriteLine(FontWeightBold);
             savefile.Close();
+            IsSavedOwnText = true;
         }
         public void LoadSettings()
         {
@@ -82,6 +88,7 @@ namespace WorkNotepadLibrary
                 FontStyleItalic = Convert.ToBoolean(savefile.ReadLine());
                 FontWeightBold = Convert.ToBoolean(savefile.ReadLine());
                 savefile.Close();
+                IsSavedOwnText = true;
             }
         }
         public WorkNotepad Clone()

@@ -33,8 +33,8 @@ namespace MyProg
         {
             OpenFileDialog open = new OpenFileDialog
             {
-                Title = "Открытие файла",
-                Filter = "Файл(.txt) | *.txt",
+                Title = "Открыть",
+                Filter = "Текстовый документ(.txt) | *.txt",
                 DefaultExt = ".txt",
             };
             if (open.ShowDialog() == true)
@@ -45,16 +45,20 @@ namespace MyProg
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog save = new SaveFileDialog
+            if (DataNotepad.GetFileName() == "")
             {
-                Title = "Сохранение файла",
-                Filter = "Файл(.txt) | *.txt",
-                DefaultExt = ".txt",
-            };
-            if (save.ShowDialog() == true)
-            {
-                DataNotepad.SaveFile(save.FileName, OwnText.Text);
+                SaveFileDialog save = new SaveFileDialog
+                {
+                    Title = "Сохранить как",
+                    Filter = "Текстовый документ(.txt) | *.txt",
+                    DefaultExt = ".txt",
+                };
+                if (save.ShowDialog() == true)
+                {
+                    DataNotepad.SaveFile(save.FileName, OwnText.Text);
+                }
             }
+            else DataNotepad.SaveFile(OwnText.Text);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -90,11 +94,12 @@ namespace MyProg
         {
             MessageBox.Show("Name of the developer must be here? :D\n" +
                 "Ok. Hapro is developer :D\n" +
-                "For pleasure :3");
+                "For pleasure :3", "О программе", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void OwnWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            OwnWindow.Title = "Без имени - " + OwnWindow.Title;
             DispatcherTimer time = new DispatcherTimer();
             time.Tick += Time_Tick;
             time.Interval = new TimeSpan(0,0,1);
@@ -144,6 +149,20 @@ namespace MyProg
                     }
                 }
             }
+        }
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+            if (!DataNotepad.IsSavedOwnText) Save_Click(sender, e);
+            else MessageAboutSave();
+        }
+
+        private void OwnText_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            DataNotepad.IsSavedOwnText = false;
+        }
+        private void MessageAboutSave()
+        {
+            MessageBox.Show("");
         }
     }
 }
