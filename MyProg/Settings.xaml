@@ -14,11 +14,11 @@
             <DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                 <Label Width="90" Height="40" Content="Размер:" Foreground="Black" FontSize="22" DockPanel.Dock="Left"/>
-                    <TextBox x:Name="Size" Text="12" Width="35" Height="35" FontSize="22" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <TextBox x:Name="FontSizeValue" Text="12" Width="35" Height="35" FontSize="22" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                 <Label Content="Стиль:" Width="90" Height="40" FontSize="22"/>
-                <ComboBox x:Name="FamilySelect" Width="161" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <ComboBox x:Name="FontFamilySelect" Width="161" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                     <ComboBoxItem Content="Arial" FontSize="12" FontFamily="Arial"/>
                     <ComboBoxItem Content="Impact" FontSize="12" FontFamily="Impact"/>
                     <ComboBoxItem Content="Segoe UI" FontSize="12" FontFamily="Segoe UI" IsSelected="True"/>
@@ -31,8 +31,8 @@
                     <Button x:Name="LoadImage" Content="Установить фон" Width="101" Click="LoadImage_Click" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Margin="3"/>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top" Margin="10">
-                <CheckBox x:Name="Cursive"  Content="Курсив" HorizontalAlignment="Left" IsChecked="False" FontStyle="Italic"/>
-                <CheckBox x:Name="Bold" Content="Жирный" HorizontalAlignment="Right" VerticalAlignment="Top" IsChecked="False" FontWeight="Bold"/>
+                <CheckBox x:Name="FontStyleItalic"  Content="Курсив" HorizontalAlignment="Left" IsChecked="False" FontStyle="Italic"/>
+                <CheckBox x:Name="FontWeightBold" Content="Жирный" HorizontalAlignment="Right" VerticalAlignment="Top" IsChecked="False" FontWeight="Bold"/>
                 </DockPanel>
                 <Button x:Name="SaveSettings" Margin="10" DockPanel.Dock="Bottom" Content="Сохранить настройки" Click="SaveSettings_Click" Height="30" FontSize="17" ToolTip="Сохраняет текущие настройки блокнота"/>
             </DockPanel>

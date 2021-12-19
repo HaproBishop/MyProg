@@ -29,10 +29,10 @@ namespace MyProg
         {
             try
             {
-                MainWindow.DataNotepad.SaveSizeAndStyleIntoObject(Convert.ToInt32(Size.Text), FamilySelect.Text);
+                MainWindow.DataNotepad.SaveSizeAndStyleIntoObject(Convert.ToInt32(FontSizeValue.Text), FontFamilySelect.Text);
                 MainWindow.DataNotepad.ImagePath = ImagePath.Text.ToString();
-                MainWindow.DataNotepad.FontStyleItalic = (bool)Cursive.IsChecked;
-                MainWindow.DataNotepad.FontWeightBold = (bool)Bold.IsChecked;
+                MainWindow.DataNotepad.FontStyleItalic = (bool)FontStyleItalic.IsChecked;
+                MainWindow.DataNotepad.FontWeightBold = (bool)FontWeightBold.IsChecked;
                 MainWindow.DataNotepad.SaveSettings();
                 MessageBox.Show("Сохранение выполнено успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -61,17 +61,20 @@ namespace MyProg
         private void SettingsWin_Loaded(object sender, RoutedEventArgs e)
         {
             MainWindow.DataNotepad.LoadSettings();
-            Size.Text = MainWindow.DataNotepad.FontSize.ToString();
+            FontSizeValue.Text = MainWindow.DataNotepad.FontSize.ToString();
             ImagePath.Text = MainWindow.DataNotepad.ImagePath;
-            Cursive.IsChecked = MainWindow.DataNotepad.FontStyleItalic;
-            Bold.IsChecked = MainWindow.DataNotepad.FontWeightBold;
-            if(MainWindow.DataNotepad.FontFamily != "") FamilySelect.Text = MainWindow.DataNotepad.FontFamily;
+            FontStyleItalic.IsChecked = MainWindow.DataNotepad.FontStyleItalic;
+            FontWeightBold.IsChecked = MainWindow.DataNotepad.FontWeightBold;
+            if(MainWindow.DataNotepad.FontFamily != "") FontFamilySelect.Text = MainWindow.DataNotepad.FontFamily;
             else MessageBox.Show("Значение стиля не было установлено. Будет использоваться по умолчанию.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void SettingsWin_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!MainWindow.DataNotepad.IsSavedCfg)
+            if (MainWindow.DataNotepad.FontFamily != FontFamilySelect.Text || 
+                MainWindow.DataNotepad.FontStyleItalic != FontStyleItalic.IsChecked ||
+                MainWindow.DataNotepad.FontWeightBold != FontWeightBold.IsChecked ||
+                MainWindow.DataNotepad.FontSize != Convert.ToInt32(FontSizeValue.Text))
             {
                 MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите выйти без сохранения изменений",
                     "Выход", MessageBoxButton.YesNoCancel, MessageBoxImage.Information);
