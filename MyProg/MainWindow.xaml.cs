@@ -193,9 +193,9 @@ namespace MyProg
 
         private void All_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if(e.Source == CCreate) Create_Click(sender, new RoutedEventArgs());
-            if (e.Source == CNewWindow) NewWindow_Click(sender, new RoutedEventArgs());
-            if(e.Source == COpen) Open_Click(sender, new RoutedEventArgs());
+            if(e.Command == COpen.Command)Open_Click(sender, new RoutedEventArgs());
+            if(e.Command == CCreate.Command)Create_Click(sender, new RoutedEventArgs());
+            if(e.Command == CNewWindow.Command)NewWindow_Click(sender, new RoutedEventArgs());
         }
     }
 }
