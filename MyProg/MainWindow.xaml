@@ -24,6 +24,7 @@
         <Menu>
             <MenuItem Header="Файл">
                 <MenuItem x:Name="Create" Header="Создать" Click="Create_Click"/>
+                <MenuItem x:Name="NewWindow" Header="Новое окно"/>
                 <MenuItem x:Name="Open" Header="Открыть" Click="Open_Click"/>
                 <MenuItem x:Name="Save" Header="Сохранить" Click="Save_Click"/>
                 <Separator/>
