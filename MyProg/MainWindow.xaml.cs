@@ -190,5 +190,12 @@ namespace MyProg
             MainWindow newwindow = new MainWindow();
             newwindow.Show();
         }
+
+        private void All_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if(e.Source == CCreate) Create_Click(sender, new RoutedEventArgs());
+            if (e.Source == CNewWindow) NewWindow_Click(sender, new RoutedEventArgs());
+            if(e.Source == COpen) Open_Click(sender, new RoutedEventArgs());
+        }
     }
 }
