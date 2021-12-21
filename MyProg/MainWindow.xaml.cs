@@ -45,9 +45,7 @@ namespace MyProg
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            byte[] time = Encoding.UTF8.GetBytes("LOX");//Тестирование преобразования в UTF8
-            OwnText.Text = Encoding.UTF8.GetString(time);
-            if (DataNotepad.GetFileName() == "" || DataNotepad.GetFileName() == null)
+            if (DataNotepad.GetFileName() == "" || DataNotepad.GetFileName() == null || e.Source != SaveAs)
             {
                 SaveFileDialog save = new SaveFileDialog
                 {
