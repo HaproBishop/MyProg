@@ -193,8 +193,8 @@ namespace MyProg
 
         private void All_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if(e.Command == CCreate.Command)Create_Click(sender, new RoutedEventArgs());
-            if(e.Command == COpen.Command)Open_Click(sender, new RoutedEventArgs());
+            if(e.Command == CCreate.Command) Create_Click(sender, new RoutedEventArgs());
+            if(e.Command == COpen.Command) Open_Click(sender, new RoutedEventArgs());
             if (e.Command == CSave.Command) Save_Click(sender, new RoutedEventArgs());
             if (e.Command == CSaveAs.Command) Save_Click(sender, new RoutedEventArgs());
         }
