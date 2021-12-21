@@ -56,6 +56,7 @@ namespace MyProg
                 if (save.ShowDialog() == true)
                 {
                     DataNotepad.SaveFile(save.FileName, OwnText.Text);
+                    OwnWindow.Title.Replace(OwnWindow.Title, save.FileName + " - " + "Notepad");
                 }
             }
             else DataNotepad.SaveFile(OwnText.Text);
@@ -116,10 +117,9 @@ namespace MyProg
         }
         private void SetBeginSettings()
         {
-            OwnText.FontSize = DataNotepad.FontSize;
             try
             {
-                OwnText.FontFamily = new FontFamily(DataNotepad.FontFamily);
+                OwnText.FontSize = DataNotepad.FontSize;
             }
             catch
             {
@@ -128,6 +128,7 @@ namespace MyProg
             }
             finally
             {
+                OwnText.FontFamily = new FontFamily(DataNotepad.FontFamily);
                 if (_datanotepad.ImagePath != "")
                 {
                     try

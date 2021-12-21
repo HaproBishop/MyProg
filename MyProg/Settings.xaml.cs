@@ -66,7 +66,13 @@ namespace MyProg
             FontStyleItalic.IsChecked = MainWindow.DataNotepad.FontStyleItalic;
             FontWeightBold.IsChecked = MainWindow.DataNotepad.FontWeightBold;
             if(MainWindow.DataNotepad.FontFamily != "") FontFamilySelect.Text = MainWindow.DataNotepad.FontFamily;
-            else MessageBox.Show("Значение стиля не было установлено. Будет использоваться по умолчанию.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+            else MessageBox.Show("Значение стиля не было установлено. Будет использоваться по умолчанию - Segou UI", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+            if (FontFamilySelect.Text == "")
+            {
+                MessageBox.Show("Информация стиля была загружена некорректно, поэтому выбран стиль по умолчанию - Segou UI",
+                    "Некорректность задания стиля", MessageBoxButton.OK, MessageBoxImage.Warning);
+                FontFamilySelect.Text = MainWindow.DataNotepad.FontFamily;
+            }
         }
 
         private void SettingsWin_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -76,7 +82,7 @@ namespace MyProg
                 MainWindow.DataNotepad.FontWeightBold != FontWeightBold.IsChecked ||
                 MainWindow.DataNotepad.FontSize != Convert.ToInt32(FontSizeValue.Text))
             {
-                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите выйти без сохранения изменений",
+                MessageBoxResult result = MessageBox.Show("Изменения не были сохранены. Вы хотите сохранить их перед выходом?",
                     "Выход", MessageBoxButton.YesNoCancel, MessageBoxImage.Information);
                 if (result == MessageBoxResult.Yes)
                 {
