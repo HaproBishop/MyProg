@@ -152,17 +152,33 @@ namespace MyProg
         }
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            if (!DataNotepad.IsSavedOwnText) Save_Click(sender, e);
-            else MessageAboutSave();
+            if (!DataNotepad.IsSavedOwnText)
+            {
+                MessageBoxResult result =  MessageBox.Show("Хотите сохранить текущие изменения?", "Сохранение изменений", MessageBoxButton.YesNoCancel,
+                    MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    Save_Click(sender, e);
+                    DefaultClearData();
+                }
+                if (result == MessageBoxResult.No) DefaultClearData();
+            }
+            else
+            {
+                DefaultClearData();
+            }
         }
 
         private void OwnText_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             DataNotepad.IsSavedOwnText = false;
+            OwnWindow.Title = "*" + OwnWindow.Title;
         }
-        private void MessageAboutSave()
+        private void DefaultClearData()
         {
-            MessageBox.Show("");
+            OwnText.Clear();
+            OwnWindow.Title = "Без имени - " + OwnWindow.Title;
+            DataNotepad.Clear();
         }
     }
 }

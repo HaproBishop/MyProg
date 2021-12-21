@@ -95,5 +95,10 @@ namespace WorkNotepadLibrary
         {
             return (WorkNotepad)MemberwiseClone();
         }
+        public void Clear()
+        {
+            FileName = "";
+            IsSavedOwnText = true;
+        }
     }
 }
