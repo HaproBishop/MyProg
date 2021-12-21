@@ -181,7 +181,7 @@ namespace MyProg
         private void DefaultClearData()
         {
             OwnText.Clear();
-            OwnWindow.Title = "Без имени - " + OwnWindow.Title;
+            OwnWindow.Title = "Без имени - " + "Notepad";
             DataNotepad.Clear();
         }
     }
