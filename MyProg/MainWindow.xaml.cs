@@ -184,5 +184,11 @@ namespace MyProg
             OwnWindow.Title = "Без имени - " + "Notepad";
             DataNotepad.Clear();
         }
+
+        private void NewWindow_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow newwindow = new MainWindow();
+            newwindow.Show();
+        }
     }
 }
