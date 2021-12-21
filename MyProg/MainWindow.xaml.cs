@@ -94,9 +94,12 @@ namespace MyProg
                 "Ok. Hapro is developer :D\n" +
                 "For pleasure :3", "О программе", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
+        public RoutedCommand _newWindow = new RoutedCommand();//Новый эвент без добавление в xaml (Для этого создан отдельный класс, если понадобится шаблон(будет разработана отдельная шаблонная библиотека в будущем)))
+        //Упрощенный способ добавления горячих клавиш. Спасибо автору plaasmeisie на сайте askdev.ru за ответ(набрал лишь 2 лайка, а оказался во много раз полезней, в плане простоты использования command)
         private void OwnWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            _newWindow.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control|ModifierKeys.Shift));//Добавление горячих клавиш
+            OwnWindow.CommandBindings.Add(new CommandBinding(_newWindow, NewWindow_Click));//Добавление в свойство CommandsBindings новых сведений о горяей клавише и ее действии
             OwnWindow.Title = "Без имени - " + OwnWindow.Title;
             DispatcherTimer time = new DispatcherTimer();
             time.Tick += Time_Tick;
@@ -191,7 +194,6 @@ namespace MyProg
         private void All_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if(e.Command == CCreate.Command)Create_Click(sender, new RoutedEventArgs());
-            if(e.Command == CNewWindow.Command)NewWindow_Click(sender, new RoutedEventArgs());
             if(e.Command == COpen.Command)Open_Click(sender, new RoutedEventArgs());
             if (e.Command == CSave.Command) Save_Click(sender, new RoutedEventArgs());
             if (e.Command == CSaveAs.Command) Save_Click(sender, new RoutedEventArgs());
