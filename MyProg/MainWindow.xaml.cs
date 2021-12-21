@@ -171,8 +171,11 @@ namespace MyProg
 
         private void OwnText_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            DataNotepad.IsSavedOwnText = false;
-            OwnWindow.Title = "*" + OwnWindow.Title;
+            if (DataNotepad.IsSavedOwnText)
+            {
+                DataNotepad.IsSavedOwnText = false;
+                OwnWindow.Title = "*" + OwnWindow.Title;
+            }
         }
         private void DefaultClearData()
         {
