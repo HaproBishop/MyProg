@@ -62,10 +62,7 @@ namespace MyProg
             else DataNotepad.SaveFile(OwnText.Text);
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
@@ -193,9 +190,21 @@ namespace MyProg
 
         private void All_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if(e.Command == COpen.Command)Open_Click(sender, new RoutedEventArgs());
             if(e.Command == CCreate.Command)Create_Click(sender, new RoutedEventArgs());
             if(e.Command == CNewWindow.Command)NewWindow_Click(sender, new RoutedEventArgs());
+            if(e.Command == COpen.Command)Open_Click(sender, new RoutedEventArgs());
+            if (e.Command == CSave.Command) Save_Click(sender, new RoutedEventArgs());
+            if (e.Command == CSaveAs.Command) Save_Click(sender, new RoutedEventArgs());
+        }
+
+        private void CanExecuteHandler(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

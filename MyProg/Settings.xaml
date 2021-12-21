@@ -34,7 +34,7 @@
                 <CheckBox x:Name="FontStyleItalic"  Content="Курсив" HorizontalAlignment="Left" IsChecked="False" FontStyle="Italic"/>
                 <CheckBox x:Name="FontWeightBold" Content="Жирный" HorizontalAlignment="Right" VerticalAlignment="Top" IsChecked="False" FontWeight="Bold"/>
                 </DockPanel>
-                <Button x:Name="SaveSettings" Margin="10" DockPanel.Dock="Bottom" Content="Сохранить настройки" Click="SaveSettings_Click" Height="30" FontSize="17" ToolTip="Сохраняет текущие настройки блокнота"/>
+                <Button x:Name="SaveSettings" Margin="10" DockPanel.Dock="Bottom" Content="Сохранить настройки" Click="SaveSettings_Click" Height="30" FontSize="17" ToolTip="Сохраняет текущие настройки блокнота" IsCancel="True" IsDefault="True"/>
             </DockPanel>
         </GroupBox>
     </Grid>

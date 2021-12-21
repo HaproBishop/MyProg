@@ -10,6 +10,9 @@
         <CommandBinding x:Name="CCreate" Command="ApplicationCommands.New" Executed="All_Executed"/>
         <CommandBinding x:Name="CNewWindow" Command="local:MainCommands.NewWindow" Executed="All_Executed"/>
         <CommandBinding x:Name="COpen" Command="ApplicationCommands.Open" Executed="All_Executed"/>
+        <CommandBinding x:Name="CSave" Command="ApplicationCommands.Save" Executed="All_Executed"/>
+        <CommandBinding x:Name="CSaveAs" Command="ApplicationCommands.SaveAs" Executed="All_Executed"/>
+        <CommandBinding x:Name="CExit" Command="ApplicationCommands.Close" Executed="CloseCommandHandler" CanExecute="CanExecuteHandler"/>
     </Window.CommandBindings>
     <Grid x:Name="DefaultBackground">
         <Grid.RowDefinitions>
@@ -29,12 +32,12 @@
         <Menu>
             <MenuItem Header="_Файл">
                 <MenuItem x:Name="Create" Header="_Создать" Click="Create_Click" InputGestureText="Ctrl+N"/>
-                <MenuItem x:Name="NewWindow" Header="_Новое окно" InputGestureText="Ctrl+Shift+N" Click="NewWindow_Click"/>
-                <MenuItem x:Name="Open" Command="ApplicationCommands.Open" Header="_Открыть" Click="Open_Click" InputGestureText="Ctrl+O"/>
+                <MenuItem x:Name="NewWindow" Header="_Новое окно" Click="NewWindow_Click" InputGestureText="Ctrl+Shift+N"/>
+                <MenuItem x:Name="Open" Header="_Открыть" Click="Open_Click" InputGestureText="Ctrl+O"/>
                 <MenuItem x:Name="Save" Header="Со_хранить" Click="Save_Click" InputGestureText="Ctrl+S"/>
                 <MenuItem x:Name="SaveAs" Header="Сохранить _как" Click="Save_Click" InputGestureText="Ctrl+Shift+S"/>
                 <Separator/>
-                <MenuItem x:Name="Exit" Header="_Выход" Click="Exit_Click"/>
+                <MenuItem x:Name="Exit" Header="_Выход" Command="ApplicationCommands.Close"/>
             </MenuItem>
             <MenuItem x:Name="Settings" Header="_Настройки" Click="Settings_Click"/>
             <MenuItem x:Name="AboutProgram" Header="_О программе" Click="AboutProgram_Click"/>
