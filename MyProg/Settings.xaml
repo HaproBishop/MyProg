@@ -24,8 +24,8 @@
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                     <Label Content="Текущий путь к фону:" Width="130" Height="25" DockPanel.Dock="Top" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="ImagePath" Height="25" DockPanel.Dock="Top" TextWrapping="Wrap" HorizontalAlignment="Stretch" IsReadOnly="True" Margin="3"/>
-                    <Button x:Name="LoadImage" Content="Установить фон" Click="LoadImage_Click" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Margin="3"/>
+                    <TextBox x:Name="ImagePath" Height="25" DockPanel.Dock="Top" TextWrapping="Wrap" IsReadOnly="True" Margin="3"/>
+                    <Button x:Name="LoadImage" Content="Установить фон" Click="LoadImage_Click" DockPanel.Dock="Bottom" Margin="3"/>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top" Margin="10">
                 <CheckBox x:Name="FontStyleItalic"  Content="Курсив" HorizontalAlignment="Left" IsChecked="False" FontStyle="Italic"/>
