@@ -153,14 +153,8 @@ namespace MyProg
         {
             if (!DataNotepad.IsSavedOwnText)
             {
-                MessageBoxResult result =  MessageBox.Show("Хотите сохранить текущие изменения?", "Сохранение изменений", MessageBoxButton.YesNoCancel,
-                    MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
-                {
-                    Save_Click(sender, e);
-                    DefaultClearData();
-                }
-                if (result == MessageBoxResult.No) DefaultClearData();
+                QuestionClose(sender, e);
+                _wasCancel = false;
             }
             else
             {
@@ -205,6 +199,35 @@ namespace MyProg
         private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             Close();
+        }
+        bool _wasCancel;//Используется для проверки на наличие ответа "Cancel"
+        private void OwnWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!DataNotepad.IsSavedOwnText)
+            {
+                QuestionClose(sender, new RoutedEventArgs());
+                if (_wasCancel)
+                {
+                    e.Cancel = _wasCancel;
+                    _wasCancel = false;
+                }
+                else
+                {
+                    DataNotepad.SaveSettings();
+                }
+            }
+        }
+        private void QuestionClose(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Хотите сохранить текущие изменения?", "Сохранение изменений", MessageBoxButton.YesNoCancel,
+                    MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                Save_Click(sender, e);
+                DefaultClearData();
+            }
+            if (result == MessageBoxResult.No) DefaultClearData();
+            if (result == MessageBoxResult.Cancel) _wasCancel = true;
         }
     }
 }
