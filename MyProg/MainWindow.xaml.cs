@@ -62,8 +62,6 @@ namespace MyProg
             else DataNotepad.SaveFile(OwnText.Text);
         }
 
-
-
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             SettingsWindow settingswindow = new SettingsWindow

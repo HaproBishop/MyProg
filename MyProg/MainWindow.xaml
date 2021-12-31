@@ -48,6 +48,10 @@
             <Separator Width="2"/>
             <TextBlock x:Name="Date"/>
             <Separator Width="2"/>
+            <Slider Minimum="0" Maximum="100" SmallChange="25" LargeChange="25" Width="200" IsSnapToTickEnabled="True" TickFrequency="25" Margin="0,0,5,0"/>
+            <TextBlock Text="0"/>
+            <TextBlock Text="%"/>
+            <Separator Width="2"/>
             <TextBlock x:Name="LOL"/>
         </StatusBar>
     </Grid>
