@@ -19,8 +19,8 @@
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Left">
                     <Label Content="Стиль:" FontSize="14" DockPanel.Dock="Top"/>
-                    <TextBox x:Name="FontFamilySelect" Text="Segou UI" Height="25" DockPanel.Dock="Top"/>
-                    <ListBox x:Name="ListFontFamily" Width="125" DockPanel.Dock="Top" Height="170" ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                    <TextBox x:Name="FontFamilySelect" Text="Segou UI" Height="25" DockPanel.Dock="Top" TextChanged="FontFamilySelect_TextChanged"/>
+                    <ListBox x:Name="ListFontFamily" Width="125" DockPanel.Dock="Top" Height="170" ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="ListFontFamily_SelectionChanged"/>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                     <Label Content="Текущий путь к фону:" Width="130" Height="25" DockPanel.Dock="Top" HorizontalAlignment="Left"/>
@@ -33,7 +33,7 @@
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                     <GroupBox Header="Образец" Margin="3">
-                        <Label FontSize="14" FontFamily="Segou UI" Content="AaBbАаБб" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label x:Name="FontExample" FontSize="14" FontFamily="Segou UI" Content="AaBbАаБб" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </GroupBox>
                 </DockPanel>
                 <Button x:Name="SaveSettings" Margin="10" DockPanel.Dock="Bottom" Content="Сохранить настройки" Click="SaveSettings_Click" Height="30" FontSize="17" ToolTip="Сохраняет текущие настройки блокнота" IsCancel="True" IsDefault="True"/>
