@@ -12,19 +12,19 @@
                 <TextBlock Text="Шрифт" FontSize="20"/>
             </GroupBox.Header>
             <DockPanel>
-                <DockPanel DockPanel.Dock="Right">
+                <DockPanel DockPanel.Dock="Right" LastChildFill="False">
                     <Label Content="Размер:" Foreground="Black" FontSize="14" DockPanel.Dock="Top"/>
-                    <TextBox x:Name="FontSizeValue" DockPanel.Dock="Top" Text="12" Height="25" FontSize="14" TextChanged="FontSizeValue_TextChanged"/>
-                    <ListBox x:Name="ListSize" Width="125" Height="170" DockPanel.Dock="Top" HorizontalAlignment="Right" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="ListSize_SelectionChanged"/>
+                    <TextBox x:Name="FontSizeValue" DockPanel.Dock="Top" Text="12" Height="25" FontSize="14" TextChanged="FontSizeValue_TextChanged" IsReadOnly="True"/>
+                    <ListBox x:Name="ListSize" Width="125" Height="230" DockPanel.Dock="Top" HorizontalAlignment="Right" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="ListSize_SelectionChanged"/>
                 </DockPanel>
-                <DockPanel DockPanel.Dock="Left">
+                <DockPanel DockPanel.Dock="Left" LastChildFill="False">
                     <Label Content="Стиль:" FontSize="14" DockPanel.Dock="Top"/>
-                    <TextBox x:Name="FontFamilySelect" Text="Segou UI" Height="25" DockPanel.Dock="Top" TextChanged="FontFamilySelect_TextChanged"/>
-                    <ListBox x:Name="ListFontFamily" Width="125" DockPanel.Dock="Top" Height="170" ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="ListFontFamily_SelectionChanged"/>
+                    <TextBox x:Name="FontFamilySelect" Text="Segou UI" Height="25" DockPanel.Dock="Top" FontSize="14" TextChanged="FontFamilySelect_TextChanged" IsReadOnly="True"/>
+                    <ListBox x:Name="ListFontFamily" Width="125" DockPanel.Dock="Top" Height="230" ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="ListFontFamily_SelectionChanged"/>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top">
-                    <Label Content="Текущий путь к фону:" Width="130" Height="25" DockPanel.Dock="Top" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="ImagePath" Height="25" DockPanel.Dock="Top" TextWrapping="Wrap" IsReadOnly="True" Margin="3"/>
+                    <Label Content="Текущий путь к фону:" FontSize="14" DockPanel.Dock="Top" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="ImagePath" Height="25" DockPanel.Dock="Top" TextWrapping="Wrap" IsReadOnly="True" Margin="3,0,3,0"/>
                     <Button x:Name="LoadImage" Content="Установить фон" Click="LoadImage_Click" DockPanel.Dock="Bottom" Margin="3"/>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top" Margin="10">
@@ -32,8 +32,8 @@
                 <CheckBox x:Name="FontWeightBold" Content="Жирный" HorizontalAlignment="Right" VerticalAlignment="Top" IsChecked="False" FontWeight="Bold"/>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top">
-                    <GroupBox Header="Образец" Margin="3">
-                        <Label x:Name="FontExample" FontSize="12" FontFamily="Segou UI" Content="AaBbАаБб" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <GroupBox Header="Образец" Width="360" Height="120" Margin="3">
+                        <Label x:Name="FontExample" FontSize="72" FontFamily="Segou UI" Content="AaBbАаБб" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </GroupBox>
                 </DockPanel>
                 <Button x:Name="SaveSettings" Margin="10" DockPanel.Dock="Bottom" Content="Сохранить настройки" Click="SaveSettings_Click" Height="30" FontSize="17" ToolTip="Сохраняет текущие настройки блокнота" IsCancel="True" IsDefault="True"/>
