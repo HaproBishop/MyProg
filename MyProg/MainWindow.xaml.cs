@@ -167,15 +167,6 @@ namespace MyProg
                 DefaultClearData();
             }
         }
-
-        private void OwnText_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (DataNotepad.IsSavedOwnText)
-            {
-                DataNotepad.IsSavedOwnText = false;
-                OwnWindow.Title = "*" + OwnWindow.Title;
-            }
-        }
         private void DefaultClearData()
         {
             OwnText.Clear();
@@ -246,6 +237,20 @@ namespace MyProg
         {
             OwnText.TextWrapping = TextWrapping.Wrap;
             DataNotepad.IsWrap = true;
+        }
+
+        private void OwnText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (OwnText.Text != "" && DataNotepad.IsSavedOwnText)
+            {
+                DataNotepad.IsSavedOwnText = false;
+                OwnWindow.Title = "*" + OwnWindow.Title;
+            }
+            else if (OwnText.Text == "")
+            {
+                DataNotepad.IsSavedOwnText = true;
+                OwnWindow.Title = OwnWindow.Title.Replace("*", "");
+            }
         }
     }
 }

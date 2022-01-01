@@ -49,7 +49,7 @@
             </MenuItem>
         </Menu>
         <Image x:Name="BackgroundImage" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
-        <TextBox x:Name="OwnText" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Segou UI" TextWrapping="Wrap" Background="#F2FFFFFF" AcceptsReturn="True" AcceptsTab="True" Grid.Row="1" Panel.ZIndex="1" PreviewTextInput="OwnText_PreviewTextInput"/>
+        <TextBox x:Name="OwnText" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Segou UI" TextWrapping="Wrap" Background="#F2FFFFFF" AcceptsReturn="True" AcceptsTab="True" Grid.Row="1" Panel.ZIndex="1" TextChanged="OwnText_TextChanged"/>
         <StatusBar VerticalAlignment="Center" Grid.Row="2">
             <TextBlock x:Name="Time" Text="HH:mm"/>
             <Separator Width="2"/>
