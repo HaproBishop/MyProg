@@ -41,6 +41,7 @@
             <MenuItem Header="_Настойки">
                 <MenuItem x:Name="FontSettings" Header="_Настройки шрифта" Click="FontSettings_Click"/>
                 <MenuItem x:Name="WrapSwitcher" Header="_Перенос по словам" IsCheckable="True" IsChecked="False" Unchecked="WrapSwitcher_Unchecked" Checked="WrapSwitcher_Checked" />
+                <MenuItem x:Name="ShowStatus" Header="Показывать строку статуса" IsCheckable="True" IsChecked="True" Unchecked="ShowStatus_Unchecked" Checked="ShowStatus_Checked"/>
             </MenuItem>
             <MenuItem Header="_Справка">
                 <MenuItem x:Name="Support" Header="Посмотреть _справку"/>
@@ -50,21 +51,21 @@
         </Menu>
         <Image x:Name="BackgroundImage" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
         <TextBox x:Name="OwnText" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Segou UI" TextWrapping="Wrap" Background="#F2FFFFFF" AcceptsReturn="True" AcceptsTab="True" Grid.Row="1" Panel.ZIndex="1" TextChanged="OwnText_TextChanged"/>
-        <StatusBar VerticalAlignment="Center" Grid.Row="2">
+        <StatusBar x:Name="Status" VerticalAlignment="Center" Grid.Row="2">
             <TextBlock x:Name="Time" Text="HH:mm"/>
             <Separator Width="2"/>
             <TextBlock x:Name="Date" Text="dd.MM.yyyy"/>
             <Separator Width="2"/>
-            <Slider Minimum="0" Maximum="100" Width="200" IsSnapToTickEnabled="True" TickFrequency="25" Margin="0,0,5,0"/>
+            <Slider Minimum="0" Maximum="100" Width="200" IsSnapToTickEnabled="True" TickFrequency="5" Margin="0,0,5,0"/>
             <TextBlock x:Name="TransparentPercent" Text="0"/>
             <TextBlock Text="%"/>
             <Separator Width="2"/>
-            <TextBlock x:Name="CurrentColumnValue" Text="1"/>
+            <TextBlock x:Name="CurrentColumn" Text="1"/>
             <TextBlock Text="столбец, "/>
-            <TextBlock x:Name="CurrentRowValue" Text="1"/>
+            <TextBlock x:Name="CurrentRow" Text="1"/>
             <TextBlock Text="строка"/>
             <Separator Width="2"/>
-            <TextBlock x:Name="CurrentScaleValue" Text="100"/>
+            <TextBlock x:Name="CurrentScale" Text="100"/>
             <TextBlock Text="%"/>
         </StatusBar>
     </Grid>

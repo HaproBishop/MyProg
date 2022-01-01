@@ -19,6 +19,7 @@ namespace WorkNotepadLibrary
         private string FileName { get; set; }
         public bool IsSavedOwnText { get; set; }
         public bool IsWrap { get; set; }
+        public bool IsStatusBar { get; set; }
         public WorkNotepad()
         {
             try
@@ -73,6 +74,7 @@ namespace WorkNotepadLibrary
             savefile.WriteLine(FontStyleItalic);
             savefile.WriteLine(FontWeightBold);
             savefile.WriteLine(IsWrap);
+            savefile.WriteLine(IsStatusBar);
             savefile.Close();
             IsSavedOwnText = true;
         }
@@ -90,6 +92,7 @@ namespace WorkNotepadLibrary
                 FontStyleItalic = Convert.ToBoolean(savefile.ReadLine());
                 FontWeightBold = Convert.ToBoolean(savefile.ReadLine());
                 IsWrap = Convert.ToBoolean(savefile.ReadLine());
+                IsStatusBar = Convert.ToBoolean(savefile.ReadLine());
                 savefile.Close();
                 IsSavedOwnText = true;
             }

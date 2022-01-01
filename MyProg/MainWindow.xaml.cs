@@ -137,6 +137,8 @@ namespace MyProg
                 SetBoldAndCursive();
                 if (DataNotepad.IsWrap) OwnText.TextWrapping = TextWrapping.Wrap;
                 else OwnText.TextWrapping = TextWrapping.NoWrap;
+                if (DataNotepad.IsStatusBar) 
+                
                 if (_datanotepad.ImagePath != "")
                 {
                     try
@@ -255,6 +257,26 @@ namespace MyProg
                 DataNotepad.IsSavedOwnText = true;
                 OwnWindow.Title = OwnWindow.Title.Replace("*", "");
             }
+        }
+        bool _firstChangeCheck = true;
+        private void ShowStatus_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!_firstChangeCheck)
+            {
+                DataNotepad.IsStatusBar = false;
+                _reservedHeigth = Status.Height;
+                Status.Height = 0;
+            }
+        }
+        double _reservedHeigth;
+        private void ShowStatus_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!_firstChangeCheck)
+            {
+                DataNotepad.IsStatusBar = true;
+                Status.Height = _reservedHeigth;
+            }
+            _firstChangeCheck = false;
         }
     }
 }
