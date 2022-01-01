@@ -62,7 +62,7 @@ namespace MyProg
             else DataNotepad.SaveFile(OwnText.Text);
         }
 
-        private void Settings_Click(object sender, RoutedEventArgs e)
+        private void FontSettings_Click(object sender, RoutedEventArgs e)
         {
             SettingsWindow settingswindow = new SettingsWindow
             {
@@ -71,10 +71,7 @@ namespace MyProg
             settingswindow.ShowDialog();
                 OwnText.FontSize = DataNotepad.FontSize;
                 OwnText.FontFamily = new FontFamily(DataNotepad.FontFamily);
-            if (DataNotepad.FontStyleItalic) OwnText.FontStyle = FontStyles.Italic;
-            else OwnText.FontStyle = FontStyles.Normal;
-            if (DataNotepad.FontWeightBold) OwnText.FontWeight = FontWeights.Bold;
-            else OwnText.FontWeight = FontWeights.Normal;
+                SetBoldAndCursive();
             if (DataNotepad.ImagePath != "")
             {
                 BitmapImage image = new BitmapImage();
@@ -85,7 +82,13 @@ namespace MyProg
                 DefaultBackground.Background = Brushes.Black;
             }
        }
-
+        private void SetBoldAndCursive()
+        {
+            if (DataNotepad.FontStyleItalic) OwnText.FontStyle = FontStyles.Italic;
+            else OwnText.FontStyle = FontStyles.Normal;
+            if (DataNotepad.FontWeightBold) OwnText.FontWeight = FontWeights.Bold;
+            else OwnText.FontWeight = FontWeights.Normal;
+        }
         private void AboutProgram_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Name of the developer must be here? :D\n" +
@@ -127,6 +130,9 @@ namespace MyProg
             finally
             {
                 OwnText.FontFamily = new FontFamily(DataNotepad.FontFamily);
+                SetBoldAndCursive();
+                if (DataNotepad.IsWrap) OwnText.TextWrapping = TextWrapping.Wrap;
+                else OwnText.TextWrapping = TextWrapping.NoWrap;
                 if (_datanotepad.ImagePath != "")
                 {
                     try
@@ -228,6 +234,18 @@ namespace MyProg
             }
             if (result == MessageBoxResult.No) DefaultClearData();
             if (result == MessageBoxResult.Cancel) _wasCancel = true;
+        }
+
+        private void WrapSwitcher_Unchecked(object sender, RoutedEventArgs e)
+        {
+            OwnText.TextWrapping = TextWrapping.NoWrap;
+            DataNotepad.IsWrap = false;
+        }
+
+        private void WrapSwitcher_Checked(object sender, RoutedEventArgs e)
+        {
+            OwnText.TextWrapping = TextWrapping.Wrap;
+            DataNotepad.IsWrap = true;
         }
     }
 }

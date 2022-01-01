@@ -38,7 +38,10 @@
                 <Separator/>
                 <MenuItem x:Name="Exit" Header="_Выход" Command="ApplicationCommands.Close"/>
             </MenuItem>
-            <MenuItem x:Name="Settings" Header="_Настройки" Click="Settings_Click"/>
+            <MenuItem Header="_Настойки">
+                <MenuItem x:Name="FontSettings" Header="_Настройки шрифта" Click="FontSettings_Click"/>
+                <MenuItem x:Name="WrapSwitcher" Header="_Перенос по словам" IsCheckable="True" IsChecked="False" Unchecked="WrapSwitcher_Unchecked" Checked="WrapSwitcher_Checked" />
+            </MenuItem>
             <MenuItem Header="_Справка">
                 <MenuItem x:Name="Support" Header="Посмотреть _справку"/>
                 <Separator/>
