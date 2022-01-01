@@ -59,7 +59,11 @@ namespace MyProg
                     OwnWindow.Title.Replace(OwnWindow.Title, save.FileName + " - " + "Notepad");
                 }
             }
-            else DataNotepad.SaveFile(OwnText.Text);
+            else
+            {
+                DataNotepad.SaveFile(OwnText.Text);
+                OwnWindow.Title = OwnWindow.Title.Replace("*", "");
+            }
         }
 
         private void FontSettings_Click(object sender, RoutedEventArgs e)
