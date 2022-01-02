@@ -5,7 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProg"
         mc:Ignorable="d"
-        Title="Notepad" Icon="Unknown.ico" MinHeight="250" MinWidth="550" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Loaded="OwnWindow_Loaded" Closing="OwnWindow_Closing">
+        Title="Notepad" Icon="Unknown.ico" MinHeight="250" MinWidth="800" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Loaded="OwnWindow_Loaded" Closing="OwnWindow_Closing">
+    <Window.Resources>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <ControlTemplate x:Key="PlusMinusButton" TargetType="{x:Type ButtonBase}">
+            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true" CornerRadius="9">
+                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsDefaulted" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding x:Name="CCreate" Command="ApplicationCommands.New" Executed="All_Executed"/>
         <CommandBinding x:Name="COpen" Command="ApplicationCommands.Open" Executed="All_Executed"/>
@@ -49,6 +81,7 @@
             <Separator Width="2"/>
             <TextBlock x:Name="Date" Text="dd.MM.yyyy"/>
             <Separator Width="2"/>
+            <TextBlock Text="Прозрачность фона:"/>
             <Slider x:Name="TransparentChanger" Minimum="0" Maximum="100" Width="200" IsSnapToTickEnabled="True" TickFrequency="5" Margin="0,0,5,0" ValueChanged="TransparentChanger_ValueChanged"/>
             <TextBlock x:Name="TransparentPercent" Text="95"/>
             <TextBlock Text="%"/>
@@ -58,8 +91,35 @@
             <TextBlock x:Name="CurrentRow" Text="1"/>
             <TextBlock Text="строка"/>
             <Separator Width="2"/>
+            <TextBlock Text="Масштаб:"/>
+            <Button Template="{DynamicResource PlusMinusButton}" Background="Transparent" BorderBrush="Black">
+                <Canvas x:Name="TextScaleMinus" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Path x:Name="LineMinus" Stroke="Black" Data="M0,7.5 L15, 7.5"/>
+                    <Path x:Name="CircleMinus">
+                        <Path.Data>
+                            <EllipseGeometry Center="7.5,7.5" RadiusX="7.5" RadiusY="7.5"/>
+                        </Path.Data>
+                        <Path.Stroke>
+                            <SolidColorBrush Color="Black"/>
+                        </Path.Stroke>
+                    </Path>
+                </Canvas>
+            </Button>
             <TextBlock x:Name="CurrentScale" Text="100"/>
             <TextBlock Text="%"/>
+            <Button Template="{DynamicResource PlusMinusButton}" Background="Transparent" BorderBrush="Black">
+                <Canvas x:Name="TextScalePlus" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Path x:Name="LinesPlus" Stroke="Black" Data="M0,7.5 L15, 7.5 M7.5,0 L7.5,15"/>
+                    <Path x:Name="CirclePlus">
+                        <Path.Data>
+                            <EllipseGeometry Center="7.5,7.5" RadiusX="7.5" RadiusY="7.5"/>
+                        </Path.Data>
+                        <Path.Stroke>
+                            <SolidColorBrush Color="Black"/>
+                        </Path.Stroke>
+                    </Path>
+                </Canvas>
+            </Button>
         </StatusBar>
         <Grid DockPanel.Dock="Top">
             <Image x:Name="BackgroundImage" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>

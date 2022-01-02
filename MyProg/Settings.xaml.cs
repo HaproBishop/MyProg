@@ -105,19 +105,19 @@ namespace MyProg
 
         private void ListFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            FontFamilySelect.Text = ListFontFamily.SelectedValue.ToString();
+            MainWindow.DataNotepad.FontFamily = FontFamilySelect.Text = ListFontFamily.SelectedValue.ToString();
         }
 
         private void ListSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            FontSizeValue.Text = ListSize.SelectedValue.ToString();
+            MainWindow.DataNotepad.FontSize = Convert.ToInt32(FontSizeValue.Text = ListSize.SelectedValue.ToString());
         }
         bool _firstChangeSize = true;
         private void FontSizeValue_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!_firstChangeSize)
             {
-                FontExample.FontSize = Convert.ToInt32(ListSize.SelectedValue);
+                FontExample.FontSize = Convert.ToInt32(FontSizeValue.Text);
             }
             _firstChangeSize = false;
         }

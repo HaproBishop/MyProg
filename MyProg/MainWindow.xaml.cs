@@ -253,12 +253,14 @@ namespace MyProg
             {
                 DataNotepad.IsStatusBar = true;
                 Status.Height = _reservedHeight;
+                OwnWindow.MinWidth = 750;
             }
             else
             {
                 DataNotepad.IsStatusBar = false;
                 _reservedHeight = Status.Height;
                 Status.Height = 0;
+                OwnWindow.MinWidth = 300;
             }
         }
 
