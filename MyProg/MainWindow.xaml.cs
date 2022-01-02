@@ -25,7 +25,8 @@ namespace MyProg
     {
         public MainWindow()
         {
-            InitializeComponent();                
+            InitializeComponent();
+            TransparentChanger.Value = 95;
         }
         private static WorkNotepad _datanotepad = new WorkNotepad();
         public static WorkNotepad DataNotepad { get => _datanotepad; set => _datanotepad = value.Clone(); }
@@ -99,7 +100,7 @@ namespace MyProg
                 "Ok. Hapro is developer :D\n" +
                 "For pleasure :3", "О программе", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-        public RoutedCommand _newWindow = new RoutedCommand();//Новый эвент без добавление в xaml (Для этого создан отдельный класс, если понадобится шаблон(будет разработана отдельная шаблонная библиотека в будущем)))
+        private readonly RoutedCommand _newWindow = new RoutedCommand();//Новый эвент без добавление в xaml (Для этого создан отдельный класс, если понадобится шаблон(будет разработана отдельная шаблонная библиотека в будущем)))
         //Упрощенный способ добавления горячих клавиш. Спасибо автору plaasmeisie на сайте askdev.ru за ответ(набрал лишь 2 лайка, а оказался во много раз полезней, в плане простоты использования command)
         private void OwnWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -232,19 +233,6 @@ namespace MyProg
             if (result == MessageBoxResult.No) DefaultClearData();
             if (result == MessageBoxResult.Cancel) _wasCancel = true;
         }
-
-        private void WrapSwitcher_Unchecked(object sender, RoutedEventArgs e)
-        {
-            OwnText.TextWrapping = TextWrapping.NoWrap;
-            DataNotepad.IsWrap = false;
-        }
-
-        private void WrapSwitcher_Checked(object sender, RoutedEventArgs e)
-        {
-            OwnText.TextWrapping = TextWrapping.Wrap;
-            DataNotepad.IsWrap = true;
-        }
-
         private void OwnText_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (OwnText.Text != "" && DataNotepad.IsSavedOwnText)
@@ -258,25 +246,39 @@ namespace MyProg
                 OwnWindow.Title = OwnWindow.Title.Replace("*", "");
             }
         }
-        bool _firstChangeCheck = true;
-        private void ShowStatus_Unchecked(object sender, RoutedEventArgs e)
+        double _reservedHeight;
+        private void ShowStatus_Click(object sender, RoutedEventArgs e)
         {
-            if (!_firstChangeCheck)
+            if (ShowStatus.IsChecked == true)
+            {
+                DataNotepad.IsStatusBar = true;
+                Status.Height = _reservedHeight;
+            }
+            else
             {
                 DataNotepad.IsStatusBar = false;
-                _reservedHeigth = Status.Height;
+                _reservedHeight = Status.Height;
                 Status.Height = 0;
             }
         }
-        double _reservedHeigth;
-        private void ShowStatus_Checked(object sender, RoutedEventArgs e)
+
+        private void WrapSwitcher_Click(object sender, RoutedEventArgs e)
         {
-            if (!_firstChangeCheck)
+            if (WrapSwitcher.IsChecked == true)
             {
-                DataNotepad.IsStatusBar = true;
-                Status.Height = _reservedHeigth;
+                OwnText.TextWrapping = TextWrapping.Wrap;
+                DataNotepad.IsWrap = true;
             }
-            _firstChangeCheck = false;
+            else
+            {
+                OwnText.TextWrapping = TextWrapping.NoWrap;
+                DataNotepad.IsWrap = false;
+            }
+        }
+        private void TransparentChanger_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+              TransparentPercent.Text = TransparentChanger.Value.ToString();
+              OwnText.Background.Opacity = TransparentChanger.Value / 100;
         }
     }
 }

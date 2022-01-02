@@ -35,8 +35,8 @@
             </MenuItem>
             <MenuItem Header="_Настойки">
                 <MenuItem x:Name="FontSettings" Header="_Настройки шрифта" Click="FontSettings_Click"/>
-                <MenuItem x:Name="WrapSwitcher" Header="_Перенос по словам" IsCheckable="True" IsChecked="False" Unchecked="WrapSwitcher_Unchecked" Checked="WrapSwitcher_Checked" />
-                <MenuItem x:Name="ShowStatus" Header="Показывать строку статуса" IsCheckable="True" IsChecked="True" Unchecked="ShowStatus_Unchecked" Checked="ShowStatus_Checked"/>
+                <MenuItem x:Name="WrapSwitcher" Header="_Перенос по словам" IsCheckable="True" IsChecked="False" Click="WrapSwitcher_Click"/>
+                <MenuItem x:Name="ShowStatus" Header="Показывать строку статуса" IsCheckable="True" IsChecked="True" Click="ShowStatus_Click"/>
             </MenuItem>
             <MenuItem Header="_Справка">
                 <MenuItem x:Name="Support" Header="Посмотреть _справку"/>
@@ -49,8 +49,8 @@
             <Separator Width="2"/>
             <TextBlock x:Name="Date" Text="dd.MM.yyyy"/>
             <Separator Width="2"/>
-            <Slider Minimum="0" Maximum="100" Width="200" IsSnapToTickEnabled="True" TickFrequency="5" Margin="0,0,5,0"/>
-            <TextBlock x:Name="TransparentPercent" Text="0"/>
+            <Slider x:Name="TransparentChanger" Minimum="0" Maximum="100" Width="200" IsSnapToTickEnabled="True" TickFrequency="5" Margin="0,0,5,0" ValueChanged="TransparentChanger_ValueChanged"/>
+            <TextBlock x:Name="TransparentPercent" Text="95"/>
             <TextBlock Text="%"/>
             <Separator Width="2"/>
             <TextBlock x:Name="CurrentColumn" Text="1"/>
@@ -62,8 +62,12 @@
             <TextBlock Text="%"/>
         </StatusBar>
         <Grid DockPanel.Dock="Top">
-        <Image x:Name="BackgroundImage" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="OwnText" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Segou UI" TextWrapping="Wrap" Background="#F2FFFFFF" AcceptsReturn="True" AcceptsTab="True" Panel.ZIndex="1" TextChanged="OwnText_TextChanged"/>
+            <Image x:Name="BackgroundImage" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox x:Name="OwnText" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Segou UI" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Panel.ZIndex="1" TextChanged="OwnText_TextChanged">
+                <TextBox.Background>
+                    <SolidColorBrush Color="White" Opacity="0.95"/>
+                </TextBox.Background>
+            </TextBox>
         </Grid>
     </DockPanel>
 </Window>
