@@ -33,7 +33,7 @@
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                     <GroupBox Header="Образец" Width="360" Height="120" Margin="3">
-                        <Label x:Name="FontExample" FontSize="72" FontFamily="Segou UI" Content="AaBbАаБб" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label x:Name="FontExample" FontSize="12" FontFamily="Segou UI" Content="AaBbАаБб" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </GroupBox>
                 </DockPanel>
                 <Button x:Name="SaveSettings" Margin="10" DockPanel.Dock="Bottom" Content="Сохранить настройки" Click="SaveSettings_Click" Height="30" FontSize="17" ToolTip="Сохраняет текущие настройки блокнота" IsCancel="True" IsDefault="True"/>

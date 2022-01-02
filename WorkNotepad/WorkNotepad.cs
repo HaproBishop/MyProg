@@ -41,29 +41,31 @@ namespace WorkNotepadLibrary
         {
             return FileName;
         }
-        public string OpenFile(string filename) 
+        public string OpenFile(string filenName) 
         {
-            FileName = filename;
-            var outfile = new StreamReader(filename);
+            FileName = filenName;
+            var outfile = new StreamReader(filenName);
             string owntext = Convert.ToString(outfile.ReadToEnd());
             outfile.Close();
+            IsSavedOwnText = true;
             return owntext;
         }
-        public void SaveFile(in string owntext)
+        public void SaveFile(in string owntText)
         {
             StreamWriter infile = new StreamWriter(FileName);
-            infile.WriteLine(owntext);
+            infile.WriteLine(owntText);
             infile.Close();
+            IsSavedOwnText = true;
         }
-        public void SaveFile(string filename, in string owntext)
+        public void SaveFile(string fileName, in string ownText)
         {
-            FileName = filename;
-            SaveFile(in owntext);
+            FileName = fileName;
+            SaveFile(in ownText);
         }
-        public void SaveSizeAndStyleIntoObject(int fontsize, string fontfamily)
+        public void SaveSizeAndStyleIntoObject(int fontSize, string fontFamily)
         {            
-            FontSize = fontsize;
-            FontFamily = fontfamily;
+            FontSize = fontSize;
+            FontFamily = fontFamily;
         }
         public void SaveSettings()
         {
@@ -76,7 +78,6 @@ namespace WorkNotepadLibrary
             savefile.WriteLine(IsWrap);
             savefile.WriteLine(IsStatusBar);
             savefile.Close();
-            IsSavedOwnText = true;
         }
         public void LoadSettings()
         {
@@ -94,7 +95,6 @@ namespace WorkNotepadLibrary
                 IsWrap = Convert.ToBoolean(savefile.ReadLine());
                 IsStatusBar = Convert.ToBoolean(savefile.ReadLine());
                 savefile.Close();
-                IsSavedOwnText = true;
             }
         }
         public WorkNotepad Clone()

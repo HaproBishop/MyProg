@@ -92,10 +92,10 @@
             <TextBlock Text="строка"/>
             <Separator Width="2"/>
             <TextBlock Text="Масштаб:"/>
-            <Button Template="{DynamicResource PlusMinusButton}" Background="Transparent" BorderBrush="Black">
-                <Canvas x:Name="TextScaleMinus" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Path x:Name="LineMinus" Stroke="Black" Data="M0,7.5 L15, 7.5"/>
-                    <Path x:Name="CircleMinus">
+            <Button x:Name="ScaleMinus" Template="{DynamicResource PlusMinusButton}" Background="Transparent" BorderBrush="Black" Click="ScaleMinus_Click">
+                <Canvas Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Path Stroke="Black" Data="M0,7.5 L15, 7.5"/>
+                    <Path>
                         <Path.Data>
                             <EllipseGeometry Center="7.5,7.5" RadiusX="7.5" RadiusY="7.5"/>
                         </Path.Data>
@@ -107,10 +107,10 @@
             </Button>
             <TextBlock x:Name="CurrentScale" Text="100"/>
             <TextBlock Text="%"/>
-            <Button Template="{DynamicResource PlusMinusButton}" Background="Transparent" BorderBrush="Black">
-                <Canvas x:Name="TextScalePlus" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Path x:Name="LinesPlus" Stroke="Black" Data="M0,7.5 L15, 7.5 M7.5,0 L7.5,15"/>
-                    <Path x:Name="CirclePlus">
+            <Button x:Name="ScalePlus" Template="{DynamicResource PlusMinusButton}" Background="Transparent" BorderBrush="Black" Click="ScalePlus_Click">
+                <Canvas Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Path Stroke="Black" Data="M0,7.5 L15, 7.5 M7.5,0 L7.5,15"/>
+                    <Path>
                         <Path.Data>
                             <EllipseGeometry Center="7.5,7.5" RadiusX="7.5" RadiusY="7.5"/>
                         </Path.Data>

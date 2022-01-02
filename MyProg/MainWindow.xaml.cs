@@ -74,17 +74,21 @@ namespace MyProg
                 Owner = this
             };            
             settingswindow.ShowDialog();
-                OwnText.FontSize = DataNotepad.FontSize;
+            if (SettingsWindow._wasSave)
+            {
+                OwnText.FontSize = DataNotepad.FontSize * (Convert.ToDouble(CurrentScale.Text)/100);
                 OwnText.FontFamily = new FontFamily(DataNotepad.FontFamily);
                 SetBoldAndCursive();
-            if (DataNotepad.ImagePath != "")
-            {
-                BitmapImage image = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri(DataNotepad.ImagePath);
-                image.EndInit();
-                BackgroundImage.Source = image;
-                DefaultBackground.Background = Brushes.Black;
+                if (DataNotepad.ImagePath != "")
+                {
+                    BitmapImage image = new BitmapImage();
+                    image.BeginInit();
+                    image.UriSource = new Uri(DataNotepad.ImagePath);
+                    image.EndInit();
+                    BackgroundImage.Source = image;
+                    DefaultBackground.Background = Brushes.Black;
+                }
+                SettingsWindow._wasSave = false;
             }
        }
         private void SetBoldAndCursive()
@@ -285,6 +289,24 @@ namespace MyProg
         {
               TransparentPercent.Text = TransparentChanger.Value.ToString();
               OwnText.Background.Opacity = TransparentChanger.Value / 100;
+        }
+
+        private void ScaleMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentScale.Text != "10")
+            {
+                CurrentScale.Text = (Convert.ToInt32(CurrentScale.Text) - 10).ToString();
+                OwnText.FontSize = DataNotepad.FontSize * (Convert.ToDouble(CurrentScale.Text) / 100);
+            }
+        }
+
+        private void ScalePlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentScale.Text != "500")
+            {
+                CurrentScale.Text = (Convert.ToInt32(CurrentScale.Text) + 10).ToString();
+                OwnText.FontSize = DataNotepad.FontSize * (Convert.ToDouble(CurrentScale.Text) / 100);
+            }
         }
     }
 }
