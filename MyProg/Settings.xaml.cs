@@ -61,7 +61,6 @@ namespace MyProg
 
         private void SettingsWin_Loaded(object sender, RoutedEventArgs e)
         {
-            MainWindow.DataNotepad.LoadSettings();
             FontSizeValue.Text = MainWindow.DataNotepad.FontSize.ToString();
             ImagePath.Text = MainWindow.DataNotepad.ImagePath;
             FontStyleItalic.IsChecked = MainWindow.DataNotepad.FontStyleItalic;

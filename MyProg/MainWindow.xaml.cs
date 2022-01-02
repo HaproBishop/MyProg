@@ -129,17 +129,22 @@ namespace MyProg
             }
             catch
             {
-                MessageBox.Show("Стиль текста не установлен, поэтому был установлен по умолчанию (Segou UI)","Уведомление",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                DataNotepad.FontSize = 12;
             }
             finally
             {
+                if(DataNotepad.FontFamily != "")
                 OwnText.FontFamily = new FontFamily(DataNotepad.FontFamily);
                 SetBoldAndCursive();
                 if (DataNotepad.IsWrap) OwnText.TextWrapping = TextWrapping.Wrap;
                 else OwnText.TextWrapping = TextWrapping.NoWrap;
-                if (DataNotepad.IsStatusBar) 
-                
+                if (!DataNotepad.IsStatusBar)
+                {
+                    _reservedHeight = Status.Height;
+                    Status.Height = 0;
+                    OwnWindow.MinWidth = 300;
+                    ShowStatus.IsChecked = false;
+                }
                 if (_datanotepad.ImagePath != "")
                 {
                     try
@@ -153,7 +158,6 @@ namespace MyProg
                     }
                     catch
                     {
-
                         MessageBox.Show("Фон не был загружен для блокнота! Возможно файл был перемещен или " +
                             "поврежден!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
                         _datanotepad.ImagePath = "";
