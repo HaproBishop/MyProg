@@ -44,7 +44,7 @@
                 <MenuItem x:Name="AboutProgram" Header="_О программе" Click="AboutProgram_Click"/>
             </MenuItem>
         </Menu>
-        <StatusBar x:Name="Status" DockPanel.Dock="Bottom">
+        <StatusBar x:Name="Status" DockPanel.Dock="Bottom" Height="Auto">
             <TextBlock x:Name="Time" Text="HH:mm"/>
             <Separator Width="2"/>
             <TextBlock x:Name="Date" Text="dd.MM.yyyy"/>
