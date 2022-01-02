@@ -296,7 +296,7 @@ namespace MyProg
             if (CurrentScale.Text != "10")
             {
                 CurrentScale.Text = (Convert.ToInt32(CurrentScale.Text) - 10).ToString();
-                OwnText.FontSize = DataNotepad.FontSize * (Convert.ToDouble(CurrentScale.Text) / 100);
+                OwnText.FontSize = DataNotepad.FontSize * (Convert.ToDouble(CurrentScale.Text) / 100); 
             }
         }
 
@@ -307,6 +307,12 @@ namespace MyProg
                 CurrentScale.Text = (Convert.ToInt32(CurrentScale.Text) + 10).ToString();
                 OwnText.FontSize = DataNotepad.FontSize * (Convert.ToDouble(CurrentScale.Text) / 100);
             }
+        }
+
+        private void OwnText_LayoutUpdated(object sender, EventArgs e)
+        {
+            CurrentRow.Text = (OwnText.GetLineIndexFromCharacterIndex(OwnText.CaretIndex) + 1).ToString();
+            CurrentColumn.Text = (OwnText.CaretIndex + 1).ToString();
         }
     }
 }

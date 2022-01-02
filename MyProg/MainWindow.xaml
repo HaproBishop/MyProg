@@ -123,7 +123,7 @@
         </StatusBar>
         <Grid DockPanel.Dock="Top">
             <Image x:Name="BackgroundImage" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox x:Name="OwnText" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Segou UI" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Panel.ZIndex="1" TextChanged="OwnText_TextChanged">
+            <TextBox x:Name="OwnText" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Segou UI" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Panel.ZIndex="1" TextChanged="OwnText_TextChanged" LayoutUpdated="OwnText_LayoutUpdated">
                 <TextBox.Background>
                     <SolidColorBrush Color="White" Opacity="0.95"/>
                 </TextBox.Background>
