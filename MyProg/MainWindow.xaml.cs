@@ -41,6 +41,8 @@ namespace MyProg
             if (open.ShowDialog() == true)
             {
                 OwnText.Text = DataNotepad.OpenFile(open.FileName);
+                OwnWindow.Title.Replace(OwnWindow.Title, open.FileName + " - " + "Notepad");
+
             }
         }
 
@@ -243,12 +245,7 @@ namespace MyProg
         }
         private void OwnText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (OwnText.Text != "" && DataNotepad.IsSavedOwnText)
-            {
-                DataNotepad.IsSavedOwnText = false;
-                OwnWindow.Title = "*" + OwnWindow.Title;
-            }
-            else if (OwnText.Text == "")
+            if (OwnText.Text == "")
             {
                 DataNotepad.IsSavedOwnText = true;
                 OwnWindow.Title = OwnWindow.Title.Replace("*", "");
@@ -313,6 +310,21 @@ namespace MyProg
         {
             CurrentRow.Text = (OwnText.GetLineIndexFromCharacterIndex(OwnText.CaretIndex) + 1).ToString();
             CurrentColumn.Text = (OwnText.CaretIndex + 1).ToString();
+        }
+
+        private void DefaultScale_Click(object sender, RoutedEventArgs e)
+        {
+            OwnText.FontSize = DataNotepad.FontSize;
+            CurrentScale.Text = "100";
+        }
+
+        private void OwnText_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (OwnText.Text == "" || DataNotepad.IsSavedOwnText)
+            {
+                DataNotepad.IsSavedOwnText = false;
+                OwnWindow.Title = "*" + OwnWindow.Title;
+            }
         }
     }
 }

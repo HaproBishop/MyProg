@@ -17,7 +17,7 @@ namespace WorkNotepadLibrary
         public bool FontWeightBold { get; set; }
         public string ImagePath { get; set; }
         private string FileName { get; set; }
-        public bool IsSavedOwnText { get; set; }
+        public bool IsSavedOwnText { get; set; } = true;
         public bool IsWrap { get; set; }
         public bool IsStatusBar { get; set; }
         public WorkNotepad()
