@@ -250,7 +250,7 @@ namespace MyProg
                 DataNotepad.IsSavedOwnText = true;
                 OwnWindow.Title = OwnWindow.Title.Replace("*", "");
             }
-            if (OwnText.Text != "" || DataNotepad.IsSavedOwnText)
+            else if (DataNotepad.IsSavedOwnText)
             {
                 DataNotepad.IsSavedOwnText = false;
                 OwnWindow.Title = "*" + OwnWindow.Title;
