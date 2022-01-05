@@ -38,11 +38,15 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="ApplicationCommands.Redo" Key="Z" Modifiers="Ctrl+Shift"/>
+    </Window.InputBindings>
     <Window.CommandBindings>
         <CommandBinding x:Name="CCreate" Command="ApplicationCommands.New" Executed="All_Executed"/>
         <CommandBinding x:Name="COpen" Command="ApplicationCommands.Open" Executed="All_Executed"/>
         <CommandBinding x:Name="CSave" Command="ApplicationCommands.Save" Executed="All_Executed"/>
         <CommandBinding x:Name="CSaveAs" Command="ApplicationCommands.SaveAs" Executed="All_Executed"/>
+        <CommandBinding x:Name="CRedo" Command="ApplicationCommands.Redo" Executed="All_Executed"/>
         <CommandBinding x:Name="CCurrentDateAndTime" Command="{x:Static local:MainCommands.CommandCurrentDateAndTime}" Executed="All_Executed"/>
         <CommandBinding x:Name="CScalePlus" Command="{x:Static local:MainCommands.CommandScalePlus}" Executed="All_Executed"/>
         <CommandBinding x:Name="CScaleMinus" Command="{x:Static local:MainCommands.CommandScaleMinus}" Executed="All_Executed"/>

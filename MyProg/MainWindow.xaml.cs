@@ -207,6 +207,7 @@ namespace MyProg
             if (e.Command == COpen.Command) Open_Click(sender, new RoutedEventArgs());
             if (e.Command == CSave.Command) Save_Click(sender, new RoutedEventArgs());
             if (e.Command == CSaveAs.Command) Save_Click(sender, new RoutedEventArgs());
+            if (e.Command == CRedo.Command) RedoMenu_Click(sender, new RoutedEventArgs());
             if (e.Command == CCurrentDateAndTime.Command) CurrentDateAndTime_Click(sender, new RoutedEventArgs());
             if (e.Command == CScalePlus.Command) ScalePlus_Click(sender, new RoutedEventArgs());
             if (e.Command == CScaleMinus.Command) ScaleMinus_Click(sender, new RoutedEventArgs());
@@ -248,6 +249,11 @@ namespace MyProg
             {
                 DataNotepad.IsSavedOwnText = true;
                 OwnWindow.Title = OwnWindow.Title.Replace("*", "");
+            }
+            if (OwnText.Text != "" || DataNotepad.IsSavedOwnText)
+            {
+                DataNotepad.IsSavedOwnText = false;
+                OwnWindow.Title = "*" + OwnWindow.Title;
             }
         }
         double _reservedHeight;
@@ -317,15 +323,6 @@ namespace MyProg
             CurrentScale.Text = "100";
         }
 
-        private void OwnText_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (OwnText.Text == "" || DataNotepad.IsSavedOwnText)
-            {
-                DataNotepad.IsSavedOwnText = false;
-                OwnWindow.Title = "*" + OwnWindow.Title;
-            }
-        }
-
         private void UndoMenu_Click(object sender, RoutedEventArgs e)
         {
             OwnText.Undo();
@@ -362,7 +359,7 @@ namespace MyProg
 
         private void CurrentDateAndTime_Click(object sender, RoutedEventArgs e)
         {
-            OwnText.Text += data.ToString("dd.MM.yyyy") + " " + data.ToString("HH:mm");
+            OwnText.Text += data.ToString("HH:mm") + " " + data.ToString("dd.MM.yyyy");
         }
 
     }
