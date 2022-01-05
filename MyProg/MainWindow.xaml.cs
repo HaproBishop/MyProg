@@ -203,14 +203,21 @@ namespace MyProg
             if (e.Command == COpen.Command) Open_Click(sender, new RoutedEventArgs());
             if (e.Command == CSave.Command) Save_Click(sender, new RoutedEventArgs());
             if (e.Command == CSaveAs.Command) Save_Click(sender, new RoutedEventArgs());
-            if (e.Command == CCut.Command) CutMenu_Click(sender, new RoutedEventArgs());
-            if (e.Command == CCopy.Command) CopyMenu_Click(sender, new RoutedEventArgs());
             if (e.Command == CCurrentDateAndTime.Command) CurrentDateAndTime_Click(sender, new RoutedEventArgs());
             if (e.Command == CScalePlus.Command) ScalePlus_Click(sender, new RoutedEventArgs());
             if (e.Command == CScaleMinus.Command) ScaleMinus_Click(sender, new RoutedEventArgs());
             if (e.Command == CDefaultScale.Command) DefaultScale_Click(sender, new RoutedEventArgs());
         }
 
+        private void CanExecuteHandler(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
         bool _wasCancel;//Используется для проверки на наличие ответа "Cancel"
         private void OwnWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -340,8 +347,7 @@ namespace MyProg
 
         private void CopyMenu_Click(object sender, RoutedEventArgs e)
         {
-            if (OwnText.SelectedText == "") Clipboard.SetDataObject(OwnText.GetLineText(OwnText.GetLineIndexFromCharacterIndex(OwnText.CaretIndex)));
-            else OwnText.Copy();
+            OwnText.Copy();
         }
 
         private void PasteMenu_Click(object sender, RoutedEventArgs e)
@@ -363,5 +369,6 @@ namespace MyProg
         {
             OwnText.Text += data.ToString("dd.MM.yyyy") + " " + data.ToString("HH:mm");
         }
+
     }
 }

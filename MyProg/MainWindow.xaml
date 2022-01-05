@@ -43,8 +43,6 @@
         <CommandBinding x:Name="COpen" Command="ApplicationCommands.Open" Executed="All_Executed"/>
         <CommandBinding x:Name="CSave" Command="ApplicationCommands.Save" Executed="All_Executed"/>
         <CommandBinding x:Name="CSaveAs" Command="ApplicationCommands.SaveAs" Executed="All_Executed"/>
-        <CommandBinding x:Name="CCut" Command="ApplicationCommands.Cut" Executed="All_Executed"/>
-        <CommandBinding x:Name="CCopy" Command="ApplicationCommands.Copy" Executed="All_Executed"/>
         <CommandBinding x:Name="CCurrentDateAndTime" Command="{x:Static local:MainCommands.CommandCurrentDateAndTime}" Executed="All_Executed"/>
         <CommandBinding x:Name="CScalePlus" Command="{x:Static local:MainCommands.CommandScalePlus}" Executed="All_Executed"/>
         <CommandBinding x:Name="CScaleMinus" Command="{x:Static local:MainCommands.CommandScaleMinus}" Executed="All_Executed"/>
