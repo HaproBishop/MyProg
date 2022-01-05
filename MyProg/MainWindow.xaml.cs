@@ -196,7 +196,11 @@ namespace MyProg
             MainWindow newwindow = new MainWindow();
             newwindow.Show();
         }
-
+        /// <summary>
+        /// Событие для всех команд (сделано для удобства)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void All_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (e.Command == CCreate.Command) Create_Click(sender, new RoutedEventArgs());
@@ -209,15 +213,6 @@ namespace MyProg
             if (e.Command == CDefaultScale.Command) DefaultScale_Click(sender, new RoutedEventArgs());
         }
 
-        private void CanExecuteHandler(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            Close();
-        }
         bool _wasCancel;//Используется для проверки на наличие ответа "Cancel"
         private void OwnWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
