@@ -44,6 +44,16 @@
         <CommandBinding x:Name="CSave" Command="ApplicationCommands.Save" Executed="All_Executed"/>
         <CommandBinding x:Name="CSaveAs" Command="ApplicationCommands.SaveAs" Executed="All_Executed"/>
         <CommandBinding x:Name="CExit" Command="ApplicationCommands.Close" Executed="CloseCommandHandler" CanExecute="CanExecuteHandler"/>
+        <CommandBinding x:Name="CUndo" Command="ApplicationCommands.Undo" Executed="All_Executed"/>
+        <CommandBinding x:Name="CCut" Command="ApplicationCommands.Cut" Executed="All_Executed"/>
+        <CommandBinding x:Name="CCopy" Command="ApplicationCommands.Copy" Executed="All_Executed"/>
+        <CommandBinding x:Name="CPaste" Command="ApplicationCommands.Paste" Executed="All_Executed"/>
+        <CommandBinding x:Name="CDel" Command="ApplicationCommands.Delete" Executed="All_Executed"/>
+        <CommandBinding x:Name="CSelectAll" Command="ApplicationCommands.SelectAll" Executed="All_Executed"/>
+        <CommandBinding x:Name="CCurrentDateAndTime" Command="{x:Static local:MainCommands.CommandCurrentDateAndTime}" Executed="All_Executed"/>
+        <CommandBinding x:Name="CScalePlus" Command="{x:Static local:MainCommands.CommandScalePlus}" Executed="All_Executed"/>
+        <CommandBinding x:Name="CScaleMinus" Command="{x:Static local:MainCommands.CommandScaleMinus}" Executed="All_Executed"/>
+        <CommandBinding x:Name="CDefaultScale" Command="{x:Static local:MainCommands.CommandDefaultScale}" Executed="All_Executed"/>
     </Window.CommandBindings>
     <DockPanel x:Name="DefaultBackground">
         <DockPanel.Background>
@@ -65,15 +75,27 @@
                 <Separator/>
                 <MenuItem x:Name="Exit" Header="_Выход" Command="ApplicationCommands.Close"/>
             </MenuItem>
+            <MenuItem Header="_Изменить">
+                <MenuItem x:Name="UndoMenu" Header="_Отменить" InputGestureText="Ctrl+Z" Click="UndoMenu_Click"/>
+                <MenuItem x:Name="RedoMenu" Header="_Вернуть" InputGestureText="Ctrl+Y" Click="RedoMenu_Click"/>
+                <Separator/>
+                <MenuItem x:Name="CutMenu" Header="Вы_резать" Click="CutMenu_Click" InputGestureText="Ctrl+X"/>
+                <MenuItem x:Name="CopyMenu" Header="_Копировать" Click="CopyMenu_Click" InputGestureText="Ctrl+C"/>
+                <MenuItem x:Name="PasteMenu" Header="В_ставить" Click="PasteMenu_Click" InputGestureText="Ctrl+V"/>
+                <MenuItem x:Name="DelMenu" Header="_Удалить" Click="DelMenu_Click" InputGestureText="Del"/>
+                <Separator/>
+                <MenuItem x:Name="SelectAllMenu" Header="_Выделить все" InputGestureText="Ctrl+A" Click="SelectAllMenu_Click"/>
+                <MenuItem x:Name="CurrentDateAndTime" Header="_Дата и время" InputGestureText="F5" Click="CurrentDateAndTime_Click"/>
+            </MenuItem>
             <MenuItem Header="_Настойки">
                 <MenuItem x:Name="FontSettings" Header="_Настройки шрифта" Click="FontSettings_Click"/>
                 <MenuItem x:Name="WrapSwitcher" Header="_Перенос по словам" IsCheckable="True" IsChecked="False" Click="WrapSwitcher_Click"/>
-                <MenuItem x:Name="ShowStatus" Header="Показывать строку статуса" IsCheckable="True" IsChecked="True" Click="ShowStatus_Click"/>
+                <MenuItem x:Name="ShowStatus" Header="Показывать строку _статуса" IsCheckable="True" IsChecked="True" Click="ShowStatus_Click"/>
             </MenuItem>
             <MenuItem Header="Масштаб">
                 <MenuItem Header="Увеличить" InputGestureText="Ctrl + Плюс(+)" Click="ScalePlus_Click"/>
                 <MenuItem Header="Уменьшить" InputGestureText="Ctrl + Минус(-)" Click="ScaleMinus_Click"/>
-                <MenuItem x:Name="DefaultScale" Header="Восстановить по умолчанию (100%)" Click="DefaultScale_Click"/>
+                <MenuItem x:Name="DefaultScale" Header="Восстановить по умолчанию (100%)" Click="DefaultScale_Click" InputGestureText="Ctrl + ()"/>
             </MenuItem>
             <MenuItem Header="_Справка">
                 <MenuItem x:Name="Support" Header="Посмотреть _справку"/>
@@ -81,7 +103,7 @@
                 <MenuItem x:Name="AboutProgram" Header="_О программе" Click="AboutProgram_Click"/>
             </MenuItem>
         </Menu>
-        <StatusBar x:Name="Status" DockPanel.Dock="Bottom" Height="Auto">
+        <StatusBar x:Name="Status" DockPanel.Dock="Bottom">
             <TextBlock x:Name="Time" Text="HH:mm"/>
             <Separator Width="2"/>
             <TextBlock x:Name="Date" Text="dd.MM.yyyy"/>

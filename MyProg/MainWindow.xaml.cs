@@ -120,10 +120,10 @@ namespace MyProg
             DataNotepad.LoadSettings();
             SetBeginSettings();
         }
-
+        DateTime data;
         private void Time_Tick(object sender, EventArgs e)
         {
-            DateTime data = DateTime.Now;
+            data = DateTime.Now;
             Time.Text = data.ToString("HH:mm");
             Date.Text = data.ToString("dd.MM.yyyy");
         }
@@ -199,10 +199,20 @@ namespace MyProg
 
         private void All_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if(e.Command == CCreate.Command) Create_Click(sender, new RoutedEventArgs());
-            if(e.Command == COpen.Command) Open_Click(sender, new RoutedEventArgs());
+            if (e.Command == CCreate.Command) Create_Click(sender, new RoutedEventArgs());
+            if (e.Command == COpen.Command) Open_Click(sender, new RoutedEventArgs());
             if (e.Command == CSave.Command) Save_Click(sender, new RoutedEventArgs());
             if (e.Command == CSaveAs.Command) Save_Click(sender, new RoutedEventArgs());
+            if (e.Command == CUndo.Command) UndoMenu_Click(sender, new RoutedEventArgs());
+            if (e.Command == CCut.Command) CutMenu_Click(sender, new RoutedEventArgs());
+            if (e.Command == CCopy.Command) CopyMenu_Click(sender, new RoutedEventArgs());
+            if (e.Command == CPaste.Command) PasteMenu_Click(sender, new RoutedEventArgs());
+            if (e.Command == CDel.Command) DelMenu_Click(sender, new RoutedEventArgs());
+            if (e.Command == CSelectAll.Command) SelectAllMenu_Click(sender, new RoutedEventArgs());
+            if (e.Command == CCurrentDateAndTime.Command) CurrentDateAndTime_Click(sender, new RoutedEventArgs());
+            if (e.Command == CScalePlus.Command) ScalePlus_Click(sender, new RoutedEventArgs());
+            if (e.Command == CScaleMinus.Command) ScaleMinus_Click(sender, new RoutedEventArgs());
+            if (e.Command == CDefaultScale.Command) DefaultScale_Click(sender, new RoutedEventArgs());
         }
 
         private void CanExecuteHandler(object sender, CanExecuteRoutedEventArgs e)
@@ -325,6 +335,46 @@ namespace MyProg
                 DataNotepad.IsSavedOwnText = false;
                 OwnWindow.Title = "*" + OwnWindow.Title;
             }
+        }
+
+        private void UndoMenu_Click(object sender, RoutedEventArgs e)
+        {
+            OwnText.Undo();
+        }
+
+        private void CutMenu_Click(object sender, RoutedEventArgs e)
+        {
+            OwnText.Cut();
+        }
+
+        private void CopyMenu_Click(object sender, RoutedEventArgs e)
+        {
+            OwnText.Copy();
+        }
+
+        private void PasteMenu_Click(object sender, RoutedEventArgs e)
+        {
+            OwnText.Paste();
+        }
+
+        private void DelMenu_Click(object sender, RoutedEventArgs e)
+        {
+            OwnText.Text.Replace(OwnText.SelectedText, "");
+        }
+
+        private void SelectAllMenu_Click(object sender, RoutedEventArgs e)
+        {
+            OwnText.SelectAll();
+        }
+
+        private void CurrentDateAndTime_Click(object sender, RoutedEventArgs e)
+        {
+            OwnText.Text += data.ToString("dd.MM.yyyy") + " " + data.ToString("HH:mm");
+        }
+
+        private void RedoMenu_Click(object sender, RoutedEventArgs e)
+        {
+            OwnText.Redo();
         }
     }
 }

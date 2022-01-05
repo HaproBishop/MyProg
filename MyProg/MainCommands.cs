@@ -11,10 +11,30 @@ namespace MyProg
     {
         static MainCommands()
         {
-            InputGestureCollection input = new InputGestureCollection();
-            input.Add(new KeyGesture(Key.N, ModifierKeys.Control|ModifierKeys.Shift,"Ctrl+Shift+N"));
-            NewWindow = new RoutedUICommand("AddNewWindowOfMainProgram", "NewWindow", typeof(MainCommands), input);
+            InputGestureCollection input1 = new InputGestureCollection()
+            {
+                new KeyGesture(Key.OemPlus, ModifierKeys.Control, "Ctrl+Плюс(+)") 
+            };
+            CommandScalePlus = new RoutedUICommand("CommandScalePlus", "MainCommands", typeof(MainCommands), input1);
+            InputGestureCollection input2 = new InputGestureCollection()
+            {
+                new KeyGesture(Key.OemMinus, ModifierKeys.Control, "Ctrl+Минус(-)")
+            };
+            CommandScaleMinus = new RoutedUICommand("CommandScaleMinus", "MainCommands", typeof(MainCommands), input2);
+            InputGestureCollection input3 = new InputGestureCollection()
+            {
+                new KeyGesture(Key.D9|Key.D0, ModifierKeys.Control, "Ctrl+()")
+            };
+            CommandDefaultScale = new RoutedUICommand("CommandDefaultScale", "MainCommands", typeof(MainCommands), input3);
+            InputGestureCollection input4 = new InputGestureCollection()
+            {
+                new KeyGesture(Key.F5, ModifierKeys.None, "F5")
+            };
+            CommandCurrentDateAndTime = new RoutedUICommand("CommandCurrentDateAndTime", "MainCommands", typeof(MainCommands), input4);
         }
-        public static RoutedCommand NewWindow { get; private set; }
+        public static RoutedCommand CommandScalePlus { get; private set; }
+        public static RoutedCommand CommandScaleMinus { get; private set; }
+        public static RoutedCommand CommandDefaultScale { get; private set; }
+        public static RoutedCommand CommandCurrentDateAndTime { get; private set; }
     }
 }
