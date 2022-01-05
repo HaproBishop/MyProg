@@ -359,7 +359,7 @@ namespace MyProg
 
         private void DelMenu_Click(object sender, RoutedEventArgs e)
         {
-            OwnText.Text.Replace(OwnText.SelectedText, "");
+            OwnText.Text = OwnText.Text.Replace(OwnText.SelectedText, "");
         }
 
         private void SelectAllMenu_Click(object sender, RoutedEventArgs e)
