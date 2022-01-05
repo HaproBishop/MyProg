@@ -211,15 +211,6 @@ namespace MyProg
             if (e.Command == CDefaultScale.Command) DefaultScale_Click(sender, new RoutedEventArgs());
         }
 
-        private void CanExecuteHandler(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            Close();
-        }
         bool _wasCancel;//Используется для проверки на наличие ответа "Cancel"
         private void OwnWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -349,7 +340,8 @@ namespace MyProg
 
         private void CopyMenu_Click(object sender, RoutedEventArgs e)
         {
-            OwnText.Copy();
+            if (OwnText.SelectedText == "") Clipboard.SetDataObject(OwnText.GetLineText(OwnText.GetLineIndexFromCharacterIndex(OwnText.CaretIndex)));
+            else OwnText.Copy();
         }
 
         private void PasteMenu_Click(object sender, RoutedEventArgs e)
@@ -371,6 +363,5 @@ namespace MyProg
         {
             OwnText.Text += data.ToString("dd.MM.yyyy") + " " + data.ToString("HH:mm");
         }
-
     }
 }
