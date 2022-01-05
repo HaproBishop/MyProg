@@ -203,12 +203,8 @@ namespace MyProg
             if (e.Command == COpen.Command) Open_Click(sender, new RoutedEventArgs());
             if (e.Command == CSave.Command) Save_Click(sender, new RoutedEventArgs());
             if (e.Command == CSaveAs.Command) Save_Click(sender, new RoutedEventArgs());
-            if (e.Command == CUndo.Command) UndoMenu_Click(sender, new RoutedEventArgs());
             if (e.Command == CCut.Command) CutMenu_Click(sender, new RoutedEventArgs());
             if (e.Command == CCopy.Command) CopyMenu_Click(sender, new RoutedEventArgs());
-            if (e.Command == CPaste.Command) PasteMenu_Click(sender, new RoutedEventArgs());
-            if (e.Command == CDel.Command) DelMenu_Click(sender, new RoutedEventArgs());
-            if (e.Command == CSelectAll.Command) SelectAllMenu_Click(sender, new RoutedEventArgs());
             if (e.Command == CCurrentDateAndTime.Command) CurrentDateAndTime_Click(sender, new RoutedEventArgs());
             if (e.Command == CScalePlus.Command) ScalePlus_Click(sender, new RoutedEventArgs());
             if (e.Command == CScaleMinus.Command) ScaleMinus_Click(sender, new RoutedEventArgs());
@@ -341,6 +337,10 @@ namespace MyProg
         {
             OwnText.Undo();
         }
+        private void RedoMenu_Click(object sender, RoutedEventArgs e)
+        {
+            OwnText.Redo();
+        }
 
         private void CutMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -372,9 +372,5 @@ namespace MyProg
             OwnText.Text += data.ToString("dd.MM.yyyy") + " " + data.ToString("HH:mm");
         }
 
-        private void RedoMenu_Click(object sender, RoutedEventArgs e)
-        {
-            OwnText.Redo();
-        }
     }
 }

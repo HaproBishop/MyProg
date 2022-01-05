@@ -44,12 +44,8 @@
         <CommandBinding x:Name="CSave" Command="ApplicationCommands.Save" Executed="All_Executed"/>
         <CommandBinding x:Name="CSaveAs" Command="ApplicationCommands.SaveAs" Executed="All_Executed"/>
         <CommandBinding x:Name="CExit" Command="ApplicationCommands.Close" Executed="CloseCommandHandler" CanExecute="CanExecuteHandler"/>
-        <CommandBinding x:Name="CUndo" Command="ApplicationCommands.Undo" Executed="All_Executed"/>
         <CommandBinding x:Name="CCut" Command="ApplicationCommands.Cut" Executed="All_Executed"/>
         <CommandBinding x:Name="CCopy" Command="ApplicationCommands.Copy" Executed="All_Executed"/>
-        <CommandBinding x:Name="CPaste" Command="ApplicationCommands.Paste" Executed="All_Executed"/>
-        <CommandBinding x:Name="CDel" Command="ApplicationCommands.Delete" Executed="All_Executed"/>
-        <CommandBinding x:Name="CSelectAll" Command="ApplicationCommands.SelectAll" Executed="All_Executed"/>
         <CommandBinding x:Name="CCurrentDateAndTime" Command="{x:Static local:MainCommands.CommandCurrentDateAndTime}" Executed="All_Executed"/>
         <CommandBinding x:Name="CScalePlus" Command="{x:Static local:MainCommands.CommandScalePlus}" Executed="All_Executed"/>
         <CommandBinding x:Name="CScaleMinus" Command="{x:Static local:MainCommands.CommandScaleMinus}" Executed="All_Executed"/>
