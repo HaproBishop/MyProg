@@ -41,14 +41,14 @@ namespace MyProg
             if (open.ShowDialog() == true)
             {
                 OwnText.Text = DataNotepad.OpenFile(open.FileName);
-                OwnWindow.Title.Replace(OwnWindow.Title, open.FileName + " - " + "Notepad");
+                OwnWindow.Title = OwnWindow.Title.Replace(OwnWindow.Title, open.FileName + " - " + "Notepad");
 
             }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (DataNotepad.GetFileName() == "" || DataNotepad.GetFileName() == null || e.Source != SaveAs)
+            if (DataNotepad.GetFileName() == "" || DataNotepad.GetFileName() == null || e.Source == SaveAs)
             {
                 SaveFileDialog save = new SaveFileDialog
                 {
@@ -59,7 +59,7 @@ namespace MyProg
                 if (save.ShowDialog() == true)
                 {
                     DataNotepad.SaveFile(save.FileName, OwnText.Text);
-                    OwnWindow.Title.Replace(OwnWindow.Title, save.FileName + " - " + "Notepad");
+                    OwnWindow.Title = OwnWindow.Title.Replace(OwnWindow.Title, save.FileName + " - " + "Notepad");
                 }
             }
             else
