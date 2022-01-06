@@ -41,7 +41,7 @@ namespace MyProg
             if (open.ShowDialog() == true)
             {
                 OwnText.Text = DataNotepad.OpenFile(open.FileName);
-                OwnWindow.Title = OwnWindow.Title.Replace(OwnWindow.Title, open.FileName + " - " + "Notepad");
+                OwnWindow.Title = OwnWindow.Title.Replace(OwnWindow.Title, open.SafeFileName + " - " + "Notepad");
 
             }
         }
@@ -59,7 +59,7 @@ namespace MyProg
                 if (save.ShowDialog() == true)
                 {
                     DataNotepad.SaveFile(save.FileName, OwnText.Text);
-                    OwnWindow.Title = OwnWindow.Title.Replace(OwnWindow.Title, save.FileName + " - " + "Notepad");
+                    OwnWindow.Title = OwnWindow.Title.Replace(OwnWindow.Title, save.SafeFileName + " - " + "Notepad");
                 }
             }
             else
@@ -346,6 +346,11 @@ namespace MyProg
                 CutMenu.IsEnabled = CopyMenu.IsEnabled = DelMenu.IsEnabled = false;
             }
             else CutMenu.IsEnabled = CopyMenu.IsEnabled = DelMenu.IsEnabled = true;
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

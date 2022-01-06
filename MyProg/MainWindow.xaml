@@ -69,7 +69,7 @@
                 <MenuItem x:Name="Save" Header="Со_хранить" Click="Save_Click" InputGestureText="Ctrl+S"/>
                 <MenuItem x:Name="SaveAs" Header="Сохранить _как" Click="Save_Click" InputGestureText="Ctrl+Shift+S"/>
                 <Separator/>
-                <MenuItem x:Name="Exit" Header="_Выход" Command="ApplicationCommands.Close"/>
+                <MenuItem x:Name="Exit" Header="_Выход" InputGestureText="Alt+F4" Click="Exit_Click"/>
             </MenuItem>
             <MenuItem Header="_Изменить">
                 <MenuItem x:Name="UndoMenu" Header="_Отменить" InputGestureText="Ctrl+Z" Command="ApplicationCommands.Undo" IsEnabled="False"/>
