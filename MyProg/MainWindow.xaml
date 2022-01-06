@@ -46,7 +46,6 @@
         <CommandBinding x:Name="COpen" Command="ApplicationCommands.Open" Executed="All_Executed"/>
         <CommandBinding x:Name="CSave" Command="ApplicationCommands.Save" Executed="All_Executed"/>
         <CommandBinding x:Name="CSaveAs" Command="ApplicationCommands.SaveAs" Executed="All_Executed"/>
-        <CommandBinding x:Name="CRedo" Command="ApplicationCommands.Redo" Executed="All_Executed"/>
         <CommandBinding x:Name="CCurrentDateAndTime" Command="{x:Static local:MainCommands.CommandCurrentDateAndTime}" Executed="All_Executed"/>
         <CommandBinding x:Name="CScalePlus" Command="{x:Static local:MainCommands.CommandScalePlus}" Executed="All_Executed"/>
         <CommandBinding x:Name="CScaleMinus" Command="{x:Static local:MainCommands.CommandScaleMinus}" Executed="All_Executed"/>
@@ -73,15 +72,15 @@
                 <MenuItem x:Name="Exit" Header="_Выход" Command="ApplicationCommands.Close"/>
             </MenuItem>
             <MenuItem Header="_Изменить">
-                <MenuItem x:Name="UndoMenu" Header="_Отменить" InputGestureText="Ctrl+Z" Click="UndoMenu_Click"/>
-                <MenuItem x:Name="RedoMenu" Header="_Вернуть" InputGestureText="Ctrl+Y" Click="RedoMenu_Click"/>
+                <MenuItem x:Name="UndoMenu" Header="_Отменить" InputGestureText="Ctrl+Z" Command="ApplicationCommands.Undo" IsEnabled="False"/>
+                <MenuItem x:Name="RedoMenu" Header="_Вернуть" InputGestureText="Ctrl+Y" Command="ApplicationCommands.Redo" IsEnabled="False"/>
                 <Separator/>
-                <MenuItem x:Name="CutMenu" Header="Вы_резать" Click="CutMenu_Click" InputGestureText="Ctrl+X"/>
-                <MenuItem x:Name="CopyMenu" Header="_Копировать" Click="CopyMenu_Click" InputGestureText="Ctrl+C"/>
-                <MenuItem x:Name="PasteMenu" Header="В_ставить" Click="PasteMenu_Click" InputGestureText="Ctrl+V"/>
-                <MenuItem x:Name="DelMenu" Header="_Удалить" Click="DelMenu_Click" InputGestureText="Del"/>
+                <MenuItem x:Name="CutMenu" Header="Вы_резать" Command="ApplicationCommands.Cut" InputGestureText="Ctrl+X" IsEnabled="False"/>
+                <MenuItem x:Name="CopyMenu" Header="_Копировать" Command="ApplicationCommands.Copy" InputGestureText="Ctrl+C" IsEnabled="False"/>
+                <MenuItem x:Name="PasteMenu" Header="В_ставить" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V" IsEnabled="False"/>
+                <MenuItem x:Name="DelMenu" Header="_Удалить" Click="DelMenu_Click" InputGestureText="Del" IsEnabled="False"/>
                 <Separator/>
-                <MenuItem x:Name="SelectAllMenu" Header="_Выделить все" InputGestureText="Ctrl+A" Click="SelectAllMenu_Click"/>
+                <MenuItem x:Name="SelectAllMenu" Header="_Выделить все" InputGestureText="Ctrl+A" Command="ApplicationCommands.SelectAll" IsEnabled="False"/>
                 <MenuItem x:Name="CurrentDateAndTime" Header="_Дата и время" InputGestureText="F5" Click="CurrentDateAndTime_Click"/>
             </MenuItem>
             <MenuItem Header="_Настойки">
@@ -147,7 +146,7 @@
         </StatusBar>
         <Grid DockPanel.Dock="Top">
             <Image x:Name="BackgroundImage" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox x:Name="OwnText" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Segou UI" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Panel.ZIndex="1" TextChanged="OwnText_TextChanged" LayoutUpdated="OwnText_LayoutUpdated">
+            <TextBox x:Name="OwnText" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Segou UI" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Panel.ZIndex="1" TextChanged="OwnText_TextChanged" LayoutUpdated="OwnText_LayoutUpdated" SelectionChanged="OwnText_SelectionChanged">
                 <TextBox.Background>
                     <SolidColorBrush Color="White" Opacity="0.95"/>
                 </TextBox.Background>

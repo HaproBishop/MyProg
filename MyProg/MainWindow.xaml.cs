@@ -110,15 +110,16 @@ namespace MyProg
         //Упрощенный способ добавления горячих клавиш. Спасибо автору plaasmeisie на сайте askdev.ru за ответ(набрал лишь 2 лайка, а оказался во много раз полезней, в плане простоты использования command)
         private void OwnWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            _newWindow.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control|ModifierKeys.Shift));//Добавление горячих клавиш
+            _newWindow.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control | ModifierKeys.Shift));//Добавление горячих клавиш
             OwnWindow.CommandBindings.Add(new CommandBinding(_newWindow, NewWindow_Click));//Добавление в свойство CommandsBindings новых сведений о горяей клавише и ее действии
             OwnWindow.Title = "Без имени - " + OwnWindow.Title;
             DispatcherTimer time = new DispatcherTimer();
             time.Tick += Time_Tick;
-            time.Interval = new TimeSpan(0,0,1);
+            time.Interval = new TimeSpan(0, 0, 1);
             time.IsEnabled = true;
             DataNotepad.LoadSettings();
             SetBeginSettings();
+            if (Clipboard.GetData(DataFormats.Text) != null) PasteMenu.IsEnabled = true;
         }
         DateTime data;
         private void Time_Tick(object sender, EventArgs e)
@@ -207,7 +208,6 @@ namespace MyProg
             if (e.Command == COpen.Command) Open_Click(sender, new RoutedEventArgs());
             if (e.Command == CSave.Command) Save_Click(sender, new RoutedEventArgs());
             if (e.Command == CSaveAs.Command) Save_Click(sender, new RoutedEventArgs());
-            if (e.Command == CRedo.Command) RedoMenu_Click(sender, new RoutedEventArgs());
             if (e.Command == CCurrentDateAndTime.Command) CurrentDateAndTime_Click(sender, new RoutedEventArgs());
             if (e.Command == CScalePlus.Command) ScalePlus_Click(sender, new RoutedEventArgs());
             if (e.Command == CScaleMinus.Command) ScaleMinus_Click(sender, new RoutedEventArgs());
@@ -252,6 +252,7 @@ namespace MyProg
             }
             else if (DataNotepad.IsSavedOwnText)
             {
+                RedoMenu.IsEnabled = true;
                 DataNotepad.IsSavedOwnText = false;
                 OwnWindow.Title = "*" + OwnWindow.Title;
             }
@@ -315,6 +316,12 @@ namespace MyProg
         {
             CurrentRow.Text = (OwnText.GetLineIndexFromCharacterIndex(OwnText.CaretIndex) + 1).ToString();
             CurrentColumn.Text = (OwnText.CaretIndex + 1).ToString();
+            if (!OwnText.CanUndo) UndoMenu.IsEnabled = false;
+            else UndoMenu.IsEnabled = true;
+            if (!OwnText.CanRedo) RedoMenu.IsEnabled = false;
+            else RedoMenu.IsEnabled = true;
+            if (OwnText.Text == "") SelectAllMenu.IsEnabled = false;
+            else SelectAllMenu.IsEnabled = true;
         }
 
         private void DefaultScale_Click(object sender, RoutedEventArgs e)
@@ -322,39 +329,9 @@ namespace MyProg
             OwnText.FontSize = DataNotepad.FontSize;
             CurrentScale.Text = "100";
         }
-
-        private void UndoMenu_Click(object sender, RoutedEventArgs e)
-        {
-            OwnText.Undo();
-        }
-        private void RedoMenu_Click(object sender, RoutedEventArgs e)
-        {
-            OwnText.Redo();
-        }
-
-        private void CutMenu_Click(object sender, RoutedEventArgs e)
-        {
-            OwnText.Cut();
-        }
-
-        private void CopyMenu_Click(object sender, RoutedEventArgs e)
-        {
-            OwnText.Copy();
-        }
-
-        private void PasteMenu_Click(object sender, RoutedEventArgs e)
-        {
-            OwnText.Paste();
-        }
-
         private void DelMenu_Click(object sender, RoutedEventArgs e)
         {
             OwnText.Text = OwnText.Text.Replace(OwnText.SelectedText, "");
-        }
-
-        private void SelectAllMenu_Click(object sender, RoutedEventArgs e)
-        {
-            OwnText.SelectAll();
         }
 
         private void CurrentDateAndTime_Click(object sender, RoutedEventArgs e)
@@ -362,5 +339,13 @@ namespace MyProg
             OwnText.Text += data.ToString("HH:mm") + " " + data.ToString("dd.MM.yyyy");
         }
 
+        private void OwnText_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (OwnText.SelectionLength == 0)
+            {
+                CutMenu.IsEnabled = CopyMenu.IsEnabled = DelMenu.IsEnabled = false;
+            }
+            else CutMenu.IsEnabled = CopyMenu.IsEnabled = DelMenu.IsEnabled = true;
+        }
     }
 }
