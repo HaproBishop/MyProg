@@ -45,7 +45,7 @@ namespace MyProg
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
+        bool _imageLoaded;
         private void LoadImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog loadimage = new OpenFileDialog
@@ -58,6 +58,7 @@ namespace MyProg
             if (loadimage.ShowDialog() == true)
             {
                 ImagePath.Text = MainWindow.DataNotepad.ImagePath = loadimage.FileName;
+                _imageLoaded = true;
             }
         }
 
@@ -82,7 +83,8 @@ namespace MyProg
             if (MainWindow.DataNotepad.FontFamily != FontFamilySelect.Text || 
                 MainWindow.DataNotepad.FontStyleItalic != FontStyleItalic.IsChecked ||
                 MainWindow.DataNotepad.FontWeightBold != FontWeightBold.IsChecked ||
-                MainWindow.DataNotepad.FontSize != Convert.ToInt32(FontSizeValue.Text))
+                MainWindow.DataNotepad.FontSize != Convert.ToInt32(FontSizeValue.Text) ||
+                _imageLoaded)
             {
                 MessageBoxResult result = MessageBox.Show("Изменения не были сохранены. Вы хотите сохранить их перед выходом?",
                     "Выход", MessageBoxButton.YesNoCancel, MessageBoxImage.Information);
@@ -106,12 +108,12 @@ namespace MyProg
 
         private void ListFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MainWindow.DataNotepad.FontFamily = FontFamilySelect.Text = ListFontFamily.SelectedValue.ToString();
+            FontFamilySelect.Text = ListFontFamily.SelectedValue.ToString();
         }
 
         private void ListSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MainWindow.DataNotepad.FontSize = Convert.ToInt32(FontSizeValue.Text = ListSize.SelectedValue.ToString());
+            FontSizeValue.Text = ListSize.SelectedValue.ToString();
         }
         bool _firstChangeSize = true;
         private void FontSizeValue_TextChanged(object sender, TextChangedEventArgs e)
