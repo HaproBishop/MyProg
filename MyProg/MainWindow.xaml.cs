@@ -337,6 +337,7 @@ namespace MyProg
         private void CurrentDateAndTime_Click(object sender, RoutedEventArgs e)
         {
             OwnText.Text += data.ToString("HH:mm") + " " + data.ToString("dd.MM.yyyy");
+            OwnText.CaretIndex = OwnText.Text.Length;
         }
 
         private void OwnText_SelectionChanged(object sender, RoutedEventArgs e)
