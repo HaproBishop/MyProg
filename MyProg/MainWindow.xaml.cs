@@ -28,8 +28,8 @@ namespace MyProg
             InitializeComponent();
             TransparentChanger.Value = 95;
         }
-        private static WorkNotepad _datanotepad = new WorkNotepad();
-        public static WorkNotepad DataNotepad { get => _datanotepad; set => _datanotepad = value.Clone(); }
+        private WorkNotepad _datanotepad = new WorkNotepad();
+        public WorkNotepad DataNotepad { get => _datanotepad; set => _datanotepad = value.Clone(); }
         private void Open_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog
@@ -74,10 +74,12 @@ namespace MyProg
             SettingsWindow settingswindow = new SettingsWindow
             {
                 Owner = this
-            };            
+            };
+            SettingsWindow.DataNotepadSettings = DataNotepad.Clone();
             settingswindow.ShowDialog();
             if (SettingsWindow._wasSave)
             {
+                DataNotepad = SettingsWindow.DataNotepadSettings.Clone();
                 OwnText.FontSize = DataNotepad.FontSize * (Convert.ToDouble(CurrentScale.Text)/100);
                 OwnText.FontFamily = new FontFamily(DataNotepad.FontFamily);
                 SetBoldAndCursive();
@@ -119,14 +121,14 @@ namespace MyProg
             time.IsEnabled = true;
             DataNotepad.LoadSettings();
             SetBeginSettings();
-            if (Clipboard.GetData(DataFormats.Text) != null) PasteMenu.IsEnabled = true;
         }
-        DateTime data;
+        DateTime _data;
         private void Time_Tick(object sender, EventArgs e)
         {
-            data = DateTime.Now;
-            Time.Text = data.ToString("HH:mm");
-            Date.Text = data.ToString("dd.MM.yyyy");
+            _data = DateTime.Now;
+            Time.Text = _data.ToString("HH:mm");
+            Date.Text = _data.ToString("dd.MM.yyyy");
+            if (Clipboard.GetData(DataFormats.Text) != null) PasteMenu.IsEnabled = true;
         }
         private void SetBeginSettings()
         {
@@ -252,7 +254,6 @@ namespace MyProg
             }
             else if (DataNotepad.IsSavedOwnText)
             {
-                RedoMenu.IsEnabled = true;
                 DataNotepad.IsSavedOwnText = false;
                 OwnWindow.Title = "*" + OwnWindow.Title;
             }
@@ -336,7 +337,7 @@ namespace MyProg
 
         private void CurrentDateAndTime_Click(object sender, RoutedEventArgs e)
         {
-            OwnText.Text += data.ToString("HH:mm") + " " + data.ToString("dd.MM.yyyy");
+            OwnText.Text += _data.ToString("HH:mm") + " " + _data.ToString("dd.MM.yyyy");
             OwnText.CaretIndex = OwnText.Text.Length;
         }
 

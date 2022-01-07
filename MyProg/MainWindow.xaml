@@ -110,9 +110,9 @@
             <TextBlock Text="%"/>
             <Separator Width="2"/>
             <TextBlock x:Name="CurrentColumn" Text="1"/>
-            <TextBlock Text="столбец, "/>
+            <TextBlock Text="символов, "/>
             <TextBlock x:Name="CurrentRow" Text="1"/>
-            <TextBlock Text="строка"/>
+            <TextBlock Text="строк"/>
             <Separator Width="2"/>
             <TextBlock Text="Масштаб:"/>
             <Button x:Name="ScaleMinus" Template="{DynamicResource PlusMinusButton}" Background="Transparent" BorderBrush="Black" Click="ScaleMinus_Click">
