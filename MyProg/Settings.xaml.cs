@@ -38,6 +38,7 @@ namespace MyProg
                 DataNotepadSettings.FontWeightBold = (bool)FontWeightBold.IsChecked;
                 DataNotepadSettings.SaveSettings();
                 _wasSave = true;
+                _imageLoaded = false;
                 MessageBox.Show("Сохранение выполнено успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch
@@ -77,6 +78,7 @@ namespace MyProg
                     "Некорректность задания стиля", MessageBoxButton.OK, MessageBoxImage.Warning);
                 FontFamilySelect.Text = DataNotepadSettings.FontFamily;
             }
+            _wasSave = false;
         }
 
         private void SettingsWin_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -94,6 +96,7 @@ namespace MyProg
                     RoutedEventArgs aEvent = new RoutedEventArgs();
                     SaveSettings_Click(sender, aEvent);
                 }
+                if (result == MessageBoxResult.No) _wasSave = false;
                 if (result == MessageBoxResult.Cancel) e.Cancel = true;
             }
         }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProg"
         mc:Ignorable="d"
-        Title="Notepad" Icon="Unknown.ico" MinHeight="250" MinWidth="600" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Loaded="OwnWindow_Loaded" Closing="OwnWindow_Closing">
+        Title="Notepad" Icon="Unknown.ico" MinHeight="250" MinWidth="800" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Loaded="OwnWindow_Loaded" Closing="OwnWindow_Closing">
     <Window.Resources>
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
         <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
@@ -50,6 +50,7 @@
         <CommandBinding x:Name="CScalePlus" Command="{x:Static local:MainCommands.CommandScalePlus}" Executed="All_Executed"/>
         <CommandBinding x:Name="CScaleMinus" Command="{x:Static local:MainCommands.CommandScaleMinus}" Executed="All_Executed"/>
         <CommandBinding x:Name="CDefaultScale" Command="{x:Static local:MainCommands.CommandDefaultScale}" Executed="All_Executed"/>
+        <CommandBinding x:Name="CHelp" Command="ApplicationCommands.Help" Executed="All_Executed"/>
     </Window.CommandBindings>
     <DockPanel x:Name="DefaultBackground">
         <DockPanel.Background>
@@ -84,7 +85,7 @@
                 <MenuItem x:Name="CurrentDateAndTime" Header="_Дата и время" InputGestureText="F5" Click="CurrentDateAndTime_Click"/>
             </MenuItem>
             <MenuItem Header="_Настойки">
-                <MenuItem x:Name="FontSettings" Header="_Настройки шрифта" Click="FontSettings_Click"/>
+                <MenuItem x:Name="FontSettings" Header="_Настройки шрифта и фона" Click="FontSettings_Click"/>
                 <MenuItem x:Name="WrapSwitcher" Header="_Перенос по словам" IsCheckable="True" IsChecked="False" Click="WrapSwitcher_Click"/>
                 <MenuItem x:Name="ShowStatus" Header="Показывать строку _статуса" IsCheckable="True" IsChecked="True" Click="ShowStatus_Click"/>
             </MenuItem>
@@ -94,7 +95,7 @@
                 <MenuItem x:Name="DefaultScale" Header="Восстановить по умолчанию (100%)" Click="DefaultScale_Click" InputGestureText="Ctrl + ()"/>
             </MenuItem>
             <MenuItem Header="_Справка">
-                <MenuItem x:Name="Support" Header="Посмотреть _справку"/>
+                <MenuItem x:Name="HelpMenu" Header="Посмотреть _справку" Click="HelpMenu_Click" InputGestureText="F1"/>
                 <Separator/>
                 <MenuItem x:Name="AboutProgram" Header="_О программе" Click="AboutProgram_Click"/>
             </MenuItem>

@@ -9,7 +9,7 @@
     <Grid>
         <GroupBox HorizontalAlignment="Left" VerticalAlignment="Top">
             <GroupBox.Header>
-                <TextBlock Text="Шрифт" FontSize="20"/>
+                <TextBlock Text="Шрифт и фон" FontSize="20"/>
             </GroupBox.Header>
             <DockPanel>
                 <DockPanel DockPanel.Dock="Right" LastChildFill="False">

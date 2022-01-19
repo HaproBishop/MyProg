@@ -104,9 +104,7 @@ namespace MyProg
         }
         private void AboutProgram_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Name of the developer must be here? :D\n" +
-                "Ok. Hapro is developer :D\n" +
-                "For pleasure :3", "О программе", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Версия 1.0. Разработчиком является Лопаткин Сергей (Псевдоним: Hapro Bishop) из группы ИСП-31", "О программе", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private readonly RoutedCommand _newWindow = new RoutedCommand();//Новый эвент без добавление в xaml (Для этого создан отдельный класс, если понадобится шаблон(будет разработана отдельная шаблонная библиотека в будущем)))
         //Упрощенный способ добавления горячих клавиш. Спасибо автору plaasmeisie на сайте askdev.ru за ответ(набрал лишь 2 лайка, а оказался во много раз полезней, в плане простоты использования command)
@@ -214,6 +212,7 @@ namespace MyProg
             if (e.Command == CScalePlus.Command) ScalePlus_Click(sender, new RoutedEventArgs());
             if (e.Command == CScaleMinus.Command) ScaleMinus_Click(sender, new RoutedEventArgs());
             if (e.Command == CDefaultScale.Command) DefaultScale_Click(sender, new RoutedEventArgs());
+            if (e.Command == CHelp.Command) HelpMenu_Click(sender, new RoutedEventArgs());
         }
 
         bool _wasCancel;//Используется для проверки на наличие ответа "Cancel"
@@ -353,6 +352,15 @@ namespace MyProg
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void HelpMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("У данной программы существует ряд следующих особенностей:\n" +
+                "1) При изменении настроек окна сохранение происходит для текущего окна и его потомков(ctrl+shift+n)\n" +
+                "2) По умолчанию используется 100% масштаб и 95% прозрачность фона (Для отключения нужно выставить 100%)\n" +
+                "3) Используются стандартные сочетания клавиш для быстрого использования функционала", "Справка",
+                MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
