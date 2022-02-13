@@ -70,8 +70,11 @@ namespace MyProg
             ImagePath.Text = DataNotepadSettings.ImagePath;
             FontStyleItalic.IsChecked = DataNotepadSettings.FontStyleItalic;
             FontWeightBold.IsChecked = DataNotepadSettings.FontWeightBold;
-            if(DataNotepadSettings.FontFamily != "") FontFamilySelect.Text = DataNotepadSettings.FontFamily;
-            else MessageBox.Show("Значение стиля не было установлено. Будет использоваться по умолчанию - Segou UI", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+            if (DataNotepadSettings.FontFamily != "") FontFamilySelect.Text = DataNotepadSettings.FontFamily;
+            else
+            {
+                MessageBox.Show("Значение стиля не было установлено. Будет использоваться по умолчанию - Segou UI", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             if (FontFamilySelect.Text == "")
             {
                 MessageBox.Show("Информация стиля была загружена некорректно, поэтому выбран стиль по умолчанию - Segou UI",
