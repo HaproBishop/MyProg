@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProg"
         mc:Ignorable="d"
-        Title="Notepad" Icon="Unknown.ico" MinHeight="250" MinWidth="800" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Loaded="OwnWindow_Loaded" Closing="OwnWindow_Closing">
+        Title="MyProg|Notepad" Icon="Unknown.ico" MinHeight="250" MinWidth="800" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Loaded="OwnWindow_Loaded" Closing="OwnWindow_Closing">
     <Window.Resources>
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
         <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
@@ -51,6 +51,7 @@
         <CommandBinding x:Name="CScaleMinus" Command="{x:Static local:MainCommands.CommandScaleMinus}" Executed="All_Executed"/>
         <CommandBinding x:Name="CDefaultScale" Command="{x:Static local:MainCommands.CommandDefaultScale}" Executed="All_Executed"/>
         <CommandBinding x:Name="CHelp" Command="ApplicationCommands.Help" Executed="All_Executed"/>
+        <CommandBinding x:Name="CPrintText" Command="ApplicationCommands.Print" Executed="All_Executed"/>
     </Window.CommandBindings>
     <DockPanel x:Name="DefaultBackground">
         <DockPanel.Background>
@@ -69,6 +70,8 @@
                 <MenuItem x:Name="Open" Header="_Открыть" Click="Open_Click" InputGestureText="Ctrl+O"/>
                 <MenuItem x:Name="Save" Header="Со_хранить" Click="Save_Click" InputGestureText="Ctrl+S"/>
                 <MenuItem x:Name="SaveAs" Header="Сохранить _как" Click="Save_Click" InputGestureText="Ctrl+Shift+S"/>
+                <Separator/>
+                <MenuItem x:Name="PrintText" Header="_Печать текста" InputGestureText="Ctrl+P" Click="PrintText_Click"/>
                 <Separator/>
                 <MenuItem x:Name="Exit" Header="_Выход" InputGestureText="Alt+F4" Click="Exit_Click"/>
             </MenuItem>

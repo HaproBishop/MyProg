@@ -68,7 +68,7 @@ namespace MyProg
                 OwnWindow.Title = OwnWindow.Title.Replace("*", "");
             }
         }
-
+        
         private void FontSettings_Click(object sender, RoutedEventArgs e)
         {
             SettingsWindow settingswindow = new SettingsWindow
@@ -213,6 +213,7 @@ namespace MyProg
             if (e.Command == CScaleMinus.Command) ScaleMinus_Click(sender, new RoutedEventArgs());
             if (e.Command == CDefaultScale.Command) DefaultScale_Click(sender, new RoutedEventArgs());
             if (e.Command == CHelp.Command) HelpMenu_Click(sender, new RoutedEventArgs());
+            if (e.Command == CPrintText.Command) PrintText_Click(sender, new RoutedEventArgs());
         }
 
         bool _wasCancel;//Используется для проверки на наличие ответа "Cancel"
@@ -361,6 +362,12 @@ namespace MyProg
                 "2) По умолчанию используется 100% масштаб и 95% прозрачность фона (Для отключения нужно выставить 100%)\n" +
                 "3) Используются стандартные сочетания клавиш для быстрого использования функционала", "Справка",
                 MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void PrintText_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog print = new PrintDialog();
+            print.ShowDialog();
         }
     }
 }
