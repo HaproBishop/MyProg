@@ -53,9 +53,9 @@ namespace MyProg
             OpenFileDialog loadimage = new OpenFileDialog
             {
                 Title = "Выбор картинки",
-                Filter = "Фон(.png) | *.png | Фон(.jpg) | *.jpg | Все фоны(*.*) | *.*",
-                FilterIndex = 1,
-                DefaultExt = ".png",
+                InitialDirectory = @"C:\Users\" + Environment.UserName + @"\Pictures",
+                Filter = "Фон(*.png, *.jpg, *.jpeg)| *.png;*.jpg;*.jpeg | Все фоны(*.*) | *.*",
+                DefaultExt = "png",
             };
             if (loadimage.ShowDialog() == true)
             {
