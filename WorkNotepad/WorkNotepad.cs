@@ -20,6 +20,7 @@ namespace WorkNotepadLibrary
         public bool IsSavedOwnText { get; set; } = true;
         public bool IsWrap { get; set; }
         public bool IsStatusBar { get; set; }
+        public bool NotFirstSaveOrOpen { get; private set; }
         public WorkNotepad()
         {
             try
@@ -48,6 +49,7 @@ namespace WorkNotepadLibrary
             string owntext = Convert.ToString(outfile.ReadToEnd());
             outfile.Close();
             IsSavedOwnText = true;
+            NotFirstSaveOrOpen = true;
             return owntext;
         }
         public void SaveFile(in string owntText)
@@ -56,11 +58,13 @@ namespace WorkNotepadLibrary
             infile.WriteLine(owntText);
             infile.Close();
             IsSavedOwnText = true;
+            NotFirstSaveOrOpen = true;
         }
         public void SaveFile(string fileName, in string ownText)
         {
             FileName = fileName;
             SaveFile(in ownText);
+
         }
         public void SaveSizeAndStyleIntoObject(int fontSize, string fontFamily)
         {            
