@@ -247,7 +247,7 @@ namespace MyProg
         }
         private void OwnText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (OwnText.Text == "" && !DataNotepad.NotFirstSave)
+            if (OwnText.Text == "" && !DataNotepad.NotFirstSaveOrOpen)
             {
                 DataNotepad.IsSavedOwnText = true;
                 OwnWindow.Title = OwnWindow.Title.Replace("*", "");
